@@ -47,20 +47,22 @@ public class NewsController {
         return new RssFeedView("https://s13.ru/rss",newsCategoryServices).getAll();
     }
 
-    @RequestMapping(value="/see", method=RequestMethod.GET)
+    @RequestMapping(value="/see")// method=RequestMethod.GET)
     public String newsForm(Model model) {
         model.addAttribute("news", new News());
         return "news";
     }
 
 
-    @RequestMapping(value="/seeByTitle", method= RequestMethod.POST)
-    public List<News> getNews(String title) {
+    @RequestMapping(value="/seeByTitle", method= RequestMethod.GET)
+    @CrossOrigin(origins = "*")
+    public List<News> getAllNews(String title) {
         return newsServices.findByTitle(title);
     }
 
-    @RequestMapping(value="/seeAllByTitle", method= RequestMethod.POST)
-    public List<News> getNews(@RequestBody List<String> category) {
+    @RequestMapping(value="/seeAllByCategory", method= RequestMethod.GET)
+    @CrossOrigin(origins = "*")
+    public List<News> getAllNews(@RequestBody List<String> category) {
         return newsServices.findAllByCategory(category);
     }
 

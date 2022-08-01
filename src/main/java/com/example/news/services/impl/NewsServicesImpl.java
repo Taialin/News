@@ -38,9 +38,8 @@ public class NewsServicesImpl implements NewsServices {
 
     }
 
-
     @Override
-    public List<News> findByTitle(String title ) {
+    public List<News> findByTitle(String title) {
         return  getAllNews().stream().filter(news -> title.equals(news.getTitle())).collect(Collectors.toList());
     }
 

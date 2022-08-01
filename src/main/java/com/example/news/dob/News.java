@@ -100,4 +100,17 @@ public News(){
         this.description = description;
     }
 
+    @Override
+    public String toString() {
+        return id + " " +
+                title + " " +
+                link + " " +
+                pubDate + " " +
+                creator + " " +
+                category + " " +
+                guid + " " +
+                description;
+    }
 }
+
+
