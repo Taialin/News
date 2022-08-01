@@ -54,14 +54,19 @@ public class NewsController {
     }
 
 
-    @RequestMapping(value="/seeByTitle", method= RequestMethod.GET)
+ /*   @RequestMapping(value="/seeByTitles", method= RequestMethod.POST)
     @CrossOrigin(origins = "*")
+    public List<News> FNews(@RequestBody List<News> title) {
+
+        return newsServices.findByTitle("Август");
+    }*/
+
+    @RequestMapping(value="/seeByTitle", method= RequestMethod.GET)
     public List<News> getAllNews(String title) {
         return newsServices.findByTitle(title);
     }
 
-    @RequestMapping(value="/seeAllByCategory", method= RequestMethod.GET)
-    @CrossOrigin(origins = "*")
+    @RequestMapping(value="/seeAllByCategory", method= RequestMethod.POST)
     public List<News> getAllNews(@RequestBody List<String> category) {
         return newsServices.findAllByCategory(category);
     }
