@@ -39,7 +39,7 @@ class UserControllerTest {
         user.setUserName("Nn");
         user.setPassword("");
         userService.save(user);
-        user = userService.findUserById(4L);
+        user = userService.findUserById(16L);
         assertThat(user).hasFieldOrPropertyWithValue("userName","Nn");
 
 

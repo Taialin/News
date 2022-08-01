@@ -21,7 +21,7 @@ public class NewsCategoryServiceImpl implements NewsCategoryServices {
 
     }
     public List<NewsCategory> findAll() {
-        return (List<NewsCategory>) newsCategoryRepository.findAll();
+        return newsCategoryRepository.findAll();
     }
 
     @Override

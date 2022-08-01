@@ -40,13 +40,14 @@ public class RssFeedView  {
         SyndFeedInput input = new SyndFeedInput();
         SyndFeed feed = input.build(new XmlReader(feedSource));
         List<News> entries = new ArrayList<>();
-        List<NewsCategory> b = new ArrayList<>(newsCategoryServices.findAll());
+        List<NewsCategory> myCatygories = new ArrayList<>(newsCategoryServices.findAll());
         for (SyndEntry entry: feed.getEntries()) {
             List<String> categories = new ArrayList<>();
             for ( SyndCategory category: entry.getCategories()) {
-                for (Object o : b){
-                    if(category.getName().equals(o))
-                categories.add(category.getName());
+                for (NewsCategory o : myCatygories){
+                    if(category.getName().equals(o.getNews_category())){
+                      categories.add(category.getName());}
+                    System.out.println(categories);
             }}
             entries.add(
                     new News(
@@ -54,7 +55,7 @@ public class RssFeedView  {
                             entry.getLink(),
                             entry.getPublishedDate().toString(),
                             entry.getAuthor().toString(),
-                            String.join(", ", categories),
+                            String.join("," , categories),
                             entry.getUri(),
                             entry.getDescription().getValue()
                     )
