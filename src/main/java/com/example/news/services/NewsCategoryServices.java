@@ -11,4 +11,5 @@ public interface NewsCategoryServices {
     NewsCategory save(NewsCategory newsCategory);
     List<NewsCategory> findAll();
     List<NewsCategory> findAllByIds(List<Long> ids);
+
 }

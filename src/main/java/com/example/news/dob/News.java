@@ -35,6 +35,7 @@ public News(){
 
     }
 
+
     public long getId() {
         return id;
     }

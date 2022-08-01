@@ -47,7 +47,7 @@ public class RssFeedView  {
                 for (NewsCategory o : myCatygories){
                     if(category.getName().equals(o.getNews_category())){
                       categories.add(category.getName());}
-                    System.out.println(categories);
+                   // System.out.println(categories);
             }}
             entries.add(
                     new News(

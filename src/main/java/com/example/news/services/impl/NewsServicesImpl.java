@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class NewsServicesImpl implements NewsServices {
@@ -37,6 +38,16 @@ public class NewsServicesImpl implements NewsServices {
 
     }
 
+
+    @Override
+    public List<News> findByTitle(String title ) {
+        return  getAllNews().stream().filter(news -> title.equals(news.getTitle())).collect(Collectors.toList());
+    }
+
+    @Override
+    public List<News> findAllByCategory(List<String> category ) {
+        return  getAllNews().stream().filter(news -> category.contains(news.getCategory())).collect(Collectors.toList());
+    }
 
 
 }

@@ -10,5 +10,6 @@ public interface NewsServices {
      News save(News news);
      boolean isExist(String newsTitle);
      List<News> getAllNews();
-
+     List<News> findByTitle(String title);
+     List<News> findAllByCategory(List<String> category);
 }

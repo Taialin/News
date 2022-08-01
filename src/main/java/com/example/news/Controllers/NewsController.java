@@ -48,14 +48,20 @@ public class NewsController {
     }
 
     @RequestMapping(value="/see", method=RequestMethod.GET)
-    public String greetingForm(Model model) {
+    public String newsForm(Model model) {
         model.addAttribute("news", new News());
         return "news";
     }
-    @RequestMapping(value="/see", method= RequestMethod.POST)
-    public String greetingSubmit(@ModelAttribute News news, Model model) {
-        model.addAttribute("news", news);
-        return "result";
+
+
+    @RequestMapping(value="/seeByTitle", method= RequestMethod.POST)
+    public List<News> getNews(String title) {
+        return newsServices.findByTitle(title);
+    }
+
+    @RequestMapping(value="/seeAllByTitle", method= RequestMethod.POST)
+    public List<News> getNews(@RequestBody List<String> category) {
+        return newsServices.findAllByCategory(category);
     }
 
 
