@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:fmt="http://www.w3.org/1999/XSL/Transform"
+      xmlns:c="http://www.w3.org/1999/XSL/Transform">
+
+<form name='f' action="/news" method='POST'>
+<h2>News for </h2>
+    <form  action="#" method='POST' th:action="@{/news/see}" th:object="${news}">
+
+<table border="1" >
+    <thead>
+    <tr >
+        <th>id</th>
+        <th>title</th>
+        <th>link</th>
+        <th>pubDate</th>
+        <th>creator</th>
+        <th>category</th>
+        <th>guid</th>
+    </tr>
+    </thead>
+    <c:for-each select="${news}" >
+
+        <tr class="">
+            <h1 th:text="${news.getId}"> </h1>
+            <td> ${news.title}</td>
+            <td> ${news.link} </td>
+            <td> $news.pubDate} </td>
+            <td> ${news.creator} </td>
+            <td> ${news.category} </td>
+            <td> ${news.guid} </td>
+        </tr>
+    </c:for-each>
+</table>
+    </form>
+</form>
+</html>
