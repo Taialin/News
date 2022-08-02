@@ -50,7 +50,7 @@ public class NewsApplicationTests {
         this.mockMvc.perform(formLogin("/login.html").user("admin").password("admin"))
                 .andDo(print())
                 .andExpect(status().is3xxRedirection())
-                .andExpect(redirectedUrl("/news.html"));
+                .andExpect(redirectedUrl("/static/news.html"));
     }
 
     @Test

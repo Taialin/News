@@ -17,7 +17,7 @@ public class UserController {
 
     private UserService userService;
 
-    @GetMapping("/admin")
+    @GetMapping("/login")
     public String userList(Model model) {
         model.addAttribute("allUsers", userService.allUsers());
         return "admin";
@@ -30,20 +30,20 @@ public class UserController {
         return "registration";
     }
 
-    @PostMapping("/admin")
+    @PostMapping("/login")
     public String  deleteUser(@RequestParam(required = true, defaultValue = "" ) Long userId,
                               @RequestParam(required = true, defaultValue = "" ) String action,
                               Model model) {
         if (action.equals("delete")){
             userService.delete(userId);
         }
-        return "redirect:/news.html";
+        return "redirect:/news";
     }
 
     @GetMapping("/admin/gt/{userId}")
     public String  getUser(@PathVariable("userId") Long userId, Model model) {
         model.addAttribute("allUsers", userService.usergtList(userId));
-        return "redirect:/news.html";
+        return "redirect:/news";
     }
 
 }

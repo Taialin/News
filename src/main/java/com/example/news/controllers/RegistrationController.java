@@ -29,7 +29,7 @@ public class RegistrationController {
         return "registration";
     }
 
-    @PostMapping("/registration")
+    @PostMapping("/login")
     public String addUser(@ModelAttribute("userForm") @Validated User userForm, BindingResult bindingResult, Model model) {
 
         if (bindingResult.hasErrors()) {

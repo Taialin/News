@@ -1,18 +1,20 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
+<html
       xmlns:th="http://www.thymeleaf.org"
       lang="en"
      >
 
-<form name='f' action="news.html" method='POST'>
+<form name='f' th:action="@{/allNews}" th:object="${news}" method='POST'>
 <h2>News for </h2>
-    <form  action="#" method='POST' th:action="@{/news/see}" th:object="${news}">
+    <!--/*@thymesVar id="news" type=""*/-->
+    <form  action="#" method='POST' th:action="@{/see}" th:object="${news}">
         <div>
 
            <div>
            <form th:action="@{/please}">
                Filter:
                <label>
+                   <!--/*@thymesVar id="keyword" type="java"*/-->
                    <input type="text" name="keyword" th:value="${keyword}" required/>
                </label>
                &nbsp;
