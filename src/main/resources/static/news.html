@@ -4,17 +4,19 @@
       lang="en"
      >
 
-<form name='f' th:action="@{/allNews}" th:object="${news}" method='POST'>
+<form name='f' th:action="@{/allNews} " method='POST'>
 <h2>News for </h2>
-    <!--/*@thymesVar id="news" type=""*/-->
-    <form  action="#" method='POST' th:action="@{/see}" th:object="${news}">
+
+
+
+    <form  action="#" method='POST' th:action="@{/see}" >
         <div>
 
            <div>
            <form th:action="@{/please}">
                Filter:
                <label>
-                   <!--/*@thymesVar id="keyword" type="java"*/-->
+                   <!--/*@thymesVar id="keyword" type="com.example.news.repository.NewsRepository"*/-->
                    <input type="text" name="keyword" th:value="${keyword}" required/>
                </label>
                &nbsp;
@@ -38,20 +40,22 @@
                      </tr>
                  </thead>
                 <tbody>
-             <tr th:each="one : ${news}">
-                <td th:text="${one.id}"> id</td>
-                <td  th:text="${one.title}"> title</td>
-                <td th:text="${one.link} "> link</td>
-                <td th:text="${one.pubDate}" > pubDate</td>
-                <td th:text="${one.creator}" > creator</td>
-                <td th:text="${one.category}" > category</td>
-                <td th:text="${one.guid}"> guid </td>
+
+                <!--/*@thymesVar id="keyword" type="com.example.news.repository.NewsRepository"*/-->
+             <!--/*@thymesVar id="news" type="com.example.news.controllers.NewsController"*/-->
+             <tr th:each="new : ${news.newsForm(news,keyword)}">
+                <td th:text="${new.id}"></td>
+                <td  th:text="${new.title}"> </td>
+                <td th:text="${new.link} "> </td>
+                <td th:text="${new.pubDate}" > </td>
+                <td th:text="${new.creator}" > </td>
+                <td th:text="${new.category}" > </td>
+                <td th:text="${new.guid}"> </td>
             </tr>
                 </tbody>
             </table>
         </div>
     </form>
-</form>
 <script type="text/javascript">
     function clearFilter(){
         window.location = '/news.html';

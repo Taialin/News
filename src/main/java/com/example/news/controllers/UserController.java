@@ -20,7 +20,7 @@ public class UserController {
     @GetMapping("/login")
     public String userList(Model model) {
         model.addAttribute("allUsers", userService.allUsers());
-        return "admin";
+        return "login";
     }
 
     @GetMapping("/user/registration")
@@ -37,7 +37,7 @@ public class UserController {
         if (action.equals("delete")){
             userService.delete(userId);
         }
-        return "redirect:/news";
+        return "redirect:/news.html";
     }
 
     @GetMapping("/admin/gt/{userId}")
