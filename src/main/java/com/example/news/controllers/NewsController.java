@@ -47,13 +47,13 @@ public class NewsController {
         return new RssFeedView("https://s13.ru/rss",newsCategoryServices).getAll();
     }
 
-    @RequestMapping(value="/allNews", method=RequestMethod.POST)
+    @RequestMapping(value="/news.html", method=RequestMethod.POST)
     public String newsForm(Model model,
                            @Param("keyword") String keyword) {
         List<News> news = newsServices.getAllNews(keyword);
         model.addAttribute("news",news);
         model.addAttribute("keyword",keyword);
-        return "news";
+        return "newsForm";
     }
 
 

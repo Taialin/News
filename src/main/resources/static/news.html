@@ -1,19 +1,15 @@
+<!--news.html-->
 <!DOCTYPE html>
 <html
       xmlns:th="http://www.thymeleaf.org"
       lang="en"
      >
 
-<form name='f' th:action="@{/allNews} " method='POST'>
+<form name='f' th:action="@{/news.html} " method='POST'>
 <h2>News for </h2>
-
-
-
-    <form  action="#" method='POST' th:action="@{/see}" >
         <div>
-
            <div>
-           <form th:action="@{/please}">
+           <form th:action="@{/newsForm}">
                Filter:
                <label>
                    <!--/*@thymesVar id="keyword" type="com.example.news.repository.NewsRepository"*/-->
@@ -41,9 +37,9 @@
                  </thead>
                 <tbody>
 
-                <!--/*@thymesVar id="keyword" type="com.example.news.repository.NewsRepository"*/-->
+                <!--/*@thymesVar id="keyword" type="com.example.news.dob.News"*/-->
              <!--/*@thymesVar id="news" type="com.example.news.controllers.NewsController"*/-->
-             <tr th:each="new : ${news.newsForm(news,keyword)}">
+             <tr th:each="new : ${news.getAllNews()}">
                 <td th:text="${new.id}"></td>
                 <td  th:text="${new.title}"> </td>
                 <td th:text="${new.link} "> </td>
