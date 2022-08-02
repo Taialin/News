@@ -1,4 +1,4 @@
-package com.example.news.Controllers;
+package com.example.news.controllers;
 
 import com.example.news.dob.User;
 import com.example.news.services.UserService;
@@ -12,7 +12,6 @@ import org.springframework.test.context.junit4.SpringRunner;
 import javax.transaction.Transactional;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest

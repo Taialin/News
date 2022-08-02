@@ -1,4 +1,4 @@
-package com.example.news.Controllers;
+package com.example.news.controllers;
 
 import com.example.news.dob.User;
 import com.example.news.services.UserService;
@@ -37,13 +37,13 @@ public class UserController {
         if (action.equals("delete")){
             userService.delete(userId);
         }
-        return "redirect:/admin";
+        return "redirect:/news.html";
     }
 
     @GetMapping("/admin/gt/{userId}")
     public String  getUser(@PathVariable("userId") Long userId, Model model) {
         model.addAttribute("allUsers", userService.usergtList(userId));
-        return "admin";
+        return "redirect:/news.html";
     }
 
 }

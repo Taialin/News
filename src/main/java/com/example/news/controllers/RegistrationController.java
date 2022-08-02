@@ -1,4 +1,4 @@
-package com.example.news.Controllers;
+package com.example.news.controllers;
 
 
 import com.example.news.dob.User;

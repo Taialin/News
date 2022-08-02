@@ -1,16 +1,16 @@
-package com.example.news.Controllers;
+package com.example.news.controllers;
 
-import com.example.news.Com.RssFeedView;
+import com.example.news.components.RssFeedView;
 import com.example.news.dob.News;
 import com.example.news.services.NewsCategoryServices;
 import com.example.news.services.NewsLinksServices;
 import com.example.news.services.NewsServices;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Map;
 
 @RestController
 @RequestMapping(value = "/news")
@@ -25,7 +25,7 @@ public class NewsController {
 
     @GetMapping("/value")
     public List<News> getAllNews() {
-        return newsServices.getAllNews();
+        return newsServices.getAllNewss();
 
     }
 
@@ -47,9 +47,12 @@ public class NewsController {
         return new RssFeedView("https://s13.ru/rss",newsCategoryServices).getAll();
     }
 
-    @RequestMapping(value="/see")// method=RequestMethod.GET)
-    public String newsForm(Model model) {
-        model.addAttribute("news", new News());
+    @RequestMapping(value="/news.html")// method=RequestMethod.GET)
+    public String newsForm(Model model,
+                           @Param("keyword") String keyword) {
+        List<News> news = newsServices.getAllNews(keyword);
+        model.addAttribute("news",news);
+        model.addAttribute("keyword",keyword);
         return "news";
     }
 

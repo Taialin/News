@@ -1,4 +1,10 @@
-<html xmlns:th="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.example.org http://example.org/xsds/example.xsd">
+
 <body>
 <h1 th:text="#{label.form.title}">form</h1>
 <form action="/login.html" th:object="${user}" method="POST" enctype="utf8">

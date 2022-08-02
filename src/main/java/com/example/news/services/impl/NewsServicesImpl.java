@@ -33,19 +33,25 @@ public class NewsServicesImpl implements NewsServices {
     }
 
     @Override
-    public List<News> getAllNews() {
+    public List<News> getAllNewss() {
         return repository.findAll();
+    }
 
+    @Override
+    public List<News> getAllNews(String keyword) {
+        if (keyword != null)
+        { return repository.findAll(keyword);}
+        return repository.findAll();
     }
 
     @Override
     public List<News> findByTitle(String title) {
-        return  getAllNews().stream().filter(news -> title.equals(news.getTitle())).collect(Collectors.toList());
+        return  getAllNewss().stream().filter(news -> title.equals(news.getTitle())).collect(Collectors.toList());
     }
 
     @Override
     public List<News> findAllByCategory(List<String> category ) {
-        return  getAllNews().stream().filter(news -> category.contains(news.getCategory())).collect(Collectors.toList());
+        return  getAllNewss().stream().filter(news -> category.contains(news.getCategory())).collect(Collectors.toList());
     }
 
 

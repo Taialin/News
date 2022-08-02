@@ -1,36 +1,58 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:fmt="http://www.w3.org/1999/XSL/Transform"
-      xmlns:c="http://www.w3.org/1999/XSL/Transform">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      lang="en"
+     >
 
-<form name='f' action="/news" method='POST'>
+<form name='f' action="news.html" method='POST'>
 <h2>News for </h2>
     <form  action="#" method='POST' th:action="@{/news/see}" th:object="${news}">
+        <div>
 
-<table border="1" >
-    <thead>
-    <tr >
-        <th>id</th>
-        <th>title</th>
-        <th>link</th>
-        <th>pubDate</th>
-        <th>creator</th>
-        <th>category</th>
-        <th>guid</th>
-    </tr>
-    </thead>
-    <c:for-each select="${news}" >
+           <div>
+           <form th:action="@{/please}">
+               Filter:
+               <label>
+                   <input type="text" name="keyword" th:value="${keyword}" required/>
+               </label>
+               &nbsp;
+               <input type="submit" value="search"/>
+               &nbsp;
+               <input type="button" value="clear" onclick="clearFilter()"/>
+           </form>
+           </div>
+            <p></p>
 
-        <tr class="">
-            <h1 th:text="${news.getId}"> </h1>
-            <td> ${news.title}</td>
-            <td> ${news.link} </td>
-            <td> $news.pubDate} </td>
-            <td> ${news.creator} </td>
-            <td> ${news.category} </td>
-            <td> ${news.guid} </td>
-        </tr>
-    </c:for-each>
-</table>
+            <table border="2" cellpadding="10" >
+                <thead>
+                    <tr >
+                        <th>id</th>
+                        <th>title</th>
+                        <th>link</th>
+                        <th>pubDate</th>
+                        <th>creator</th>
+                        <th>category</th>
+                        <th>guid</th>
+                     </tr>
+                 </thead>
+                <tbody>
+             <tr th:each="one : ${news}">
+                <td th:text="${one.id}"> id</td>
+                <td  th:text="${one.title}"> title</td>
+                <td th:text="${one.link} "> link</td>
+                <td th:text="${one.pubDate}" > pubDate</td>
+                <td th:text="${one.creator}" > creator</td>
+                <td th:text="${one.category}" > category</td>
+                <td th:text="${one.guid}"> guid </td>
+            </tr>
+                </tbody>
+            </table>
+        </div>
     </form>
 </form>
+<script type="text/javascript">
+    function clearFilter(){
+        window.location = '/news.html';
+    }
+</script>
 </html>

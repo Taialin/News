@@ -1,12 +1,10 @@
-package com.example.news.Controllers;
+package com.example.news.controllers;
 
-import com.example.news.Com.RssFeedView;
-import com.example.news.dob.News;
+import com.example.news.components.RssFeedView;
 import com.example.news.dob.NewsCategory;
 import com.example.news.services.NewsCategoryServices;
 import com.example.news.services.NewsLinksServices;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

@@ -1,4 +1,4 @@
-package com.example.news.Com;
+package com.example.news.components;
 
 
 import com.example.news.dob.News;
@@ -11,8 +11,6 @@ import com.rometools.rome.io.FeedException;
 import com.rometools.rome.io.SyndFeedInput;
 import com.rometools.rome.io.XmlReader;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.net.URL;
