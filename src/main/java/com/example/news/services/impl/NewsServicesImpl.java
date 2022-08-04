@@ -1,6 +1,6 @@
 package com.example.news.services.impl;
 
-import com.example.news.dob.News;
+import com.example.news.dob.MyNews;
 import com.example.news.repository.NewsRepository;
 import com.example.news.services.NewsServices;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,15 +16,15 @@ public class NewsServicesImpl implements NewsServices {
     NewsRepository repository;
 
     @Override
-    public News save(News news) {
+    public MyNews save(MyNews news) {
         return  repository.save(news);
 
     }
 
     @Override
     public boolean isExist(String newsTitle) {
-        List<News> news = repository.findAll();
-        for(News n: news){
+        List<MyNews> news = repository.findAll();
+        for(MyNews n: news){
             if(n.getTitle().equals(newsTitle)){
                 return true;
             }
@@ -33,24 +33,24 @@ public class NewsServicesImpl implements NewsServices {
     }
 
     @Override
-    public List<News> getAllNewss() {
+    public List<MyNews> getAllNewss() {
         return repository.findAll();
     }
 
     @Override
-    public List<News> getAllNews(String keyword) {
+    public List<MyNews> getAllNews(String keyword) {
         if (keyword != null)
         { return repository.findAll(keyword);}
         return repository.findAll();
     }
 
     @Override
-    public List<News> findByTitle(String title) {
+    public List<MyNews> findByTitle(String title) {
         return  getAllNewss().stream().filter(news -> title.equals(news.getTitle())).collect(Collectors.toList());
     }
 
     @Override
-    public List<News> findAllByCategory(List<String> category ) {
+    public List<MyNews> findAllByCategory(List<String> category ) {
         return  getAllNewss().stream().filter(news -> category.contains(news.getCategory())).collect(Collectors.toList());
     }
 

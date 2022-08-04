@@ -25,6 +25,7 @@ public class NewsCategoryController {
     @CrossOrigin(origins = "*")
     public String all() throws Exception {
         List<NewsCategory> list = new RssFeedView(newsLinksServices.getLink(2L).getLinkRSS(),newsCategoryServices).getCategory();
+
         for (NewsCategory item : list) {
             newsCategoryServices.save(item);
         }

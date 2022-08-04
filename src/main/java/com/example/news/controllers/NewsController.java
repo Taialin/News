@@ -1,7 +1,8 @@
 package com.example.news.controllers;
 
 import com.example.news.components.RssFeedView;
-import com.example.news.dob.News;
+import com.example.news.dob.MyNews;
+import com.example.news.repository.NewsRepository;
 import com.example.news.services.NewsCategoryServices;
 import com.example.news.services.NewsLinksServices;
 import com.example.news.services.NewsServices;
@@ -9,7 +10,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -22,9 +25,11 @@ public class NewsController {
     NewsLinksServices newsLinksServices;
     @Autowired
     NewsCategoryServices newsCategoryServices;
+    @Autowired
+    NewsRepository newsRepository;
 
     @GetMapping("/value")
-    public List<News> getAllNews() {
+    public List<MyNews> getAllNews() {
         return newsServices.getAllNewss();
 
     }
@@ -33,8 +38,8 @@ public class NewsController {
     @GetMapping("/save")
     @CrossOrigin(origins = "*")
     public String all() throws Exception {
-        List<News> list = new RssFeedView(newsLinksServices.getLink(2L).getLinkRSS(),newsCategoryServices).getAll();
-        for (News item : list) {
+        List<MyNews> list = new RssFeedView(newsLinksServices.getLink(2L).getLinkRSS(),newsCategoryServices).getAll();
+        for (MyNews item : list) {
             newsServices.save(item);
         }
         return "done";
@@ -43,18 +48,28 @@ public class NewsController {
 
     @RequestMapping("/v")
     @ResponseBody
-    public List<News> getFeed() throws Exception {
+    public List<MyNews> getFeed() throws Exception {
         return new RssFeedView("https://s13.ru/rss",newsCategoryServices).getAll();
     }
 
-    @RequestMapping(value="/news.html", method=RequestMethod.POST)
+    @RequestMapping(value="/news", method=RequestMethod.POST)
     public String newsForm(Model model,
                            @Param("keyword") String keyword) {
-        List<News> news = newsServices.getAllNews(keyword);
-        model.addAttribute("news",news);
-        model.addAttribute("keyword",keyword);
-        return "newsForm";
+        List<MyNews> news = newsServices.getAllNews(keyword);
+        List<MyNews> newsList = new ArrayList<>(newsRepository.findAll());
+       // List<MyNews> newsAll = newsServices.getAllNewss();
+        model.addAttribute("news",newsList);
+       // model.addAttribute("keyword",keyword);
+        return "news.html";
     }
+
+    @RequestMapping(value="/news",method=RequestMethod.POST)
+    public ModelAndView getAllNewsV() {
+        ModelAndView mav = new ModelAndView("news.html");
+        mav.addObject("news",newsRepository.findAll());
+        return mav;
+    }
+
 
 
  /*   @RequestMapping(value="/seeByTitles", method= RequestMethod.POST)
@@ -65,12 +80,12 @@ public class NewsController {
     }*/
 
     @RequestMapping(value="/seeByTitle", method= RequestMethod.GET)
-    public List<News> getAllNews(String title) {
+    public List<MyNews> getAllNews(String title) {
         return newsServices.findByTitle(title);
     }
 
     @RequestMapping(value="/seeAllByCategory", method= RequestMethod.POST)
-    public List<News> getAllNews(@RequestBody List<String> category) {
+    public List<MyNews> getAllNews(@RequestBody List<String> category) {
         return newsServices.findAllByCategory(category);
     }
 

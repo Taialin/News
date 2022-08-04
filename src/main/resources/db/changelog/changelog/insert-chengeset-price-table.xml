@@ -3,14 +3,14 @@
                    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
                    http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
-    <changeSet id="insert-into-role" author="smon">
-        <insert tableName="roles">
+    <changeSet id="insert-into-price" author="smon">
+        <insert tableName="price">
             <column name="id" value="1"/>
-            <column name="name" value="user"/>
+            <column name="subscriptionsCost" value="1"/>
         </insert>
-        <insert tableName="roles">
+        <insert tableName="price">
             <column name="id" value="2"/>
-            <column name="name" value="admin"/>
+            <column name="subscriptionsCost" value="2"/>
         </insert>
     </changeSet>
 </databaseChangeLog>

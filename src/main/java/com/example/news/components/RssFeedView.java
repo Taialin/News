@@ -1,7 +1,7 @@
 package com.example.news.components;
 
 
-import com.example.news.dob.News;
+import com.example.news.dob.MyNews;
 import com.example.news.dob.NewsCategory;
 import com.example.news.services.NewsCategoryServices;
 import com.rometools.rome.feed.synd.SyndCategory;
@@ -32,12 +32,12 @@ public class RssFeedView  {
 
     }
 
-    public List<News> getAll() throws IOException, FeedException {
+    public List<MyNews> getAll() throws IOException, FeedException {
 
         URL feedSource = new URL(url);
         SyndFeedInput input = new SyndFeedInput();
         SyndFeed feed = input.build(new XmlReader(feedSource));
-        List<News> entries = new ArrayList<>();
+        List<MyNews> entries = new ArrayList<>();
         List<NewsCategory> myCatygories = new ArrayList<>(newsCategoryServices.findAll());
         for (SyndEntry entry: feed.getEntries()) {
             List<String> categories = new ArrayList<>();
@@ -48,7 +48,7 @@ public class RssFeedView  {
                    // System.out.println(categories);
             }}
             entries.add(
-                    new News(
+                    new MyNews(
                             entry.getTitle(),
                             entry.getLink(),
                             entry.getPublishedDate().toString(),

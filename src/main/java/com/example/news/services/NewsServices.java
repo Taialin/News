@@ -1,16 +1,16 @@
 package com.example.news.services;
 
-import com.example.news.dob.News;
+import com.example.news.dob.MyNews;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
 public interface NewsServices {
-     News save(News news);
+     MyNews save(MyNews news);
      boolean isExist(String newsTitle);
-     List<News> getAllNewss();
-     List<News> getAllNews(String keyword);
-     List<News> findByTitle(String title);
-     List<News> findAllByCategory(List<String> category);
+     List<MyNews> getAllNewss();
+     List<MyNews> getAllNews(String keyword);
+     List<MyNews> findByTitle(String title);
+     List<MyNews> findAllByCategory(List<String> category);
 }

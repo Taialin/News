@@ -5,11 +5,12 @@
       lang="en"
      >
 
-<form name='f' th:action="@{/news.html} " method='POST'>
-<h2>News for </h2>
+
+
         <div>
            <div>
            <form th:action="@{/newsForm}">
+               <h2>News for </h2>
                Filter:
                <label>
                    <!--/*@thymesVar id="keyword" type="com.example.news.repository.NewsRepository"*/-->
@@ -19,7 +20,7 @@
                <input type="submit" value="search"/>
                &nbsp;
                <input type="button" value="clear" onclick="clearFilter()"/>
-           </form>
+
            </div>
             <p></p>
 
@@ -36,18 +37,19 @@
                      </tr>
                  </thead>
                 <tbody>
+                <!--/*@thymesVar id="news" type="com.example.news.services.NewsServices"*/-->
 
-                <!--/*@thymesVar id="keyword" type="com.example.news.dob.News"*/-->
-             <!--/*@thymesVar id="news" type="com.example.news.controllers.NewsController"*/-->
-             <tr th:each="new : ${news.getAllNews()}">
-                <td th:text="${new.id}"></td>
-                <td  th:text="${new.title}"> </td>
-                <td th:text="${new.link} "> </td>
-                <td th:text="${new.pubDate}" > </td>
-                <td th:text="${new.creator}" > </td>
-                <td th:text="${new.category}" > </td>
-                <td th:text="${new.guid}"> </td>
+             <!--/*@thymesVar id="News" type="com.example.news.services.NewsServices"*/-->
+             <tr th:each="post : ${News.getAllNewss()}">
+                <td th:text="${post.id}"></td>
+                <td  th:text="${post.title}"> </td>
+                <td th:text="${post.link} "> </td>
+                <td th:text="${post.pubDate}" > </td>
+                <td th:text="${post.creator}" > </td>
+                <td th:text="${post.category}" > </td>
+                <td th:text="${post.guid}"> </td>
             </tr>
+
                 </tbody>
             </table>
         </div>

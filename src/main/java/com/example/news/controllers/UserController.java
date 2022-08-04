@@ -20,7 +20,7 @@ public class UserController {
     @GetMapping("/login")
     public String userList(Model model) {
         model.addAttribute("allUsers", userService.allUsers());
-        return "login";
+        return "login.html";
     }
 
     @GetMapping("/user/registration")
