@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping(value = "/pregistration")
+@RequestMapping(value = "/registration")
 
 public class RegistrationController {
 
@@ -23,13 +23,13 @@ public class RegistrationController {
     private UserService userService;
 
     @GetMapping("/registration")
-    public String registration(Model model) {
+    public String registration(Model model, @ModelAttribute User user) {
         model.addAttribute("userForm", new User());
 
-        return "registration.html";
+        return "redirect:/login.html";
     }
 
-    @PostMapping("/login")
+    @PostMapping("/registration")
     public String addUser(@ModelAttribute("userForm") @Validated User userForm, BindingResult bindingResult, Model model) {
 
         if (bindingResult.hasErrors()) {
@@ -44,7 +44,7 @@ public class RegistrationController {
             return "registration";
         }
 
-        return "redirect:/news.html";
+        return "redirect:/login.html";
     }
 
     @PostMapping("/ping")

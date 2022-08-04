@@ -52,7 +52,7 @@ public class NewsController {
         return new RssFeedView("https://s13.ru/rss",newsCategoryServices).getAll();
     }
 
-    @RequestMapping(value="/news", method=RequestMethod.POST)
+    @RequestMapping(value="/news.html", method=RequestMethod.POST)
     public String newsForm(Model model,
                            @Param("keyword") String keyword) {
         List<MyNews> news = newsServices.getAllNews(keyword);
@@ -63,12 +63,12 @@ public class NewsController {
         return "news.html";
     }
 
-    @RequestMapping(value="/news",method=RequestMethod.POST)
+ /*   @RequestMapping(value="/news",method=RequestMethod.POST)
     public ModelAndView getAllNewsV() {
         ModelAndView mav = new ModelAndView("news.html");
         mav.addObject("news",newsRepository.findAll());
         return mav;
-    }
+    }*/
 
 
 
