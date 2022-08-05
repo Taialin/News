@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.example.org http://example.org/xsds/example.xsd">
+
+<body>
+<form  style="max-width: 800px; margin: 0 auto"  th:action="@{/registration}" th:object="${user}" method="POST">
+<h1 > Registration form</h1>
+    <LINK rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css">
+    <!--/*@thymesVar id="user" type="com.example.news.dob.User"*/-->
+    <div class="m-5">
+        <div class="form-group row">
+        <label >Name</label>
+            <div class="col-8">
+        <input class="col-form-label col-7" type="text" th:field="*{userName}"/>
+            </div>
+    </div>
+    </div>
+    <p></p>
+    <div class="m-5">
+        <div class="form-group row">
+        <label >Surname</label>
+            <div class="col-8">
+        <input class="col-form-label col-7" type="text" th:field="*{secondName}"/>
+            </div>
+    </div>
+    </div>
+    <p></p>
+    <div class="m-5">
+        <div class="form-group row">
+        <label >Telephone</label>
+            <div class="col-8">
+        <input  class="col-form-label col-7" type="text" th:field="*{phoneNumber}"/>
+                </div
+    </div>
+    </div>
+    <p></p>
+    <div class="m-5">
+        <div class="form-group row">
+        <label >Email</label>
+            <div class="col-8">
+        <input class="col-form-label col-7" type="email" th:field="*{email}"/>
+            </div>
+    </div>
+    </div>
+    <p></p>
+    <div class="m-5">
+        <div class="form-group row">
+        <label >Password</label>
+            <div class="col-8">
+        <input class="col-form-label col-7" type="password" th:field="*{password}"/>
+            </div>
+    </div>
+    </div>
+    <p></p>
+    <div class="m-5">
+        <div class="form-group row">
+        <label>confirm</label>
+            <div class="col-8">
+        <input class="col-form-label col-7" type="password" th:field="*{matchingPassword}"/>
+            </div>
+    </div>
+    </div>
+    <p></p>
+    <button type="submit">submit</button>
+</form>
+</body>
+</html>

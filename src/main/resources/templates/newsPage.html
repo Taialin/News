@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+
+    <!--/*@thymesVar id="news" type="com.example.demo.dob.MyNews"*/-->
+    <form name='f' th:action="news" method='POST' th:object="${news}">
+        <LINK rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css">
+
+        <h2>News for </h2>
+        <h2> <a th:href="@{/subscription}">Subscriptions page </a></h2>
+        <div>
+            <div>
+                Filter:
+                <label>
+                    <!--/*@thymesVar id="keyword" type="com.example.news.repository.NewsRepository"*/-->
+                    <input type="text" name="keyword" th:value="${keyword}" required/>
+                </label>
+                &nbsp;
+                <input type="submit" value="search"/>
+                &nbsp;
+                <input type="button" value="clear" onclick="clearFilter()"/>
+
+            </div>
+            <p></p>
+        </div>
+    </form>
+    <table border="2" cellpadding="10">
+        <thead>
+        <tr>
+            <th>id</th>
+            <th>title</th>
+            <th>link</th>
+            <th>pubDate</th>
+            <th>creator</th>
+            <th>category</th>
+            <th>guid</th>
+        </tr>
+        </thead>
+        <tbody>
+        <!--/*@thymesVar id="oneNote" type="com.example.demo.dob.MyNews"*/-->
+        <tr th:each="oneNote: ${news}">
+            <td th:text="${oneNote.id}"></td>
+            <td th:text="${oneNote.title}"></td>
+            <td th:text="${oneNote.link} "></td>
+            <td th:text="${oneNote.pubDate}"></td>
+            <td th:text="${oneNote.creator}"></td>
+            <td>
+                <!--/*@thymesVar id="category" type="com.example.demo.dob.NewsCategory"*/-->
+                <div th:each="category: ${oneNote.categories}">
+                    <p th:text="${category.news_category}"></p>
+                </div>
+            </td>
+            <td th:text="${oneNote.guid}"></td>
+        </tr>
+        </tbody>
+    </table>
+</body>
+
+<script type="text/javascript">
+    function clearFilter() {
+        window.location = '/news.html';
+    }
+</script>
+</html>

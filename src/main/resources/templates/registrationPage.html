@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html
+        xmlns:th="http://www.thymeleaf.org"
+        lang="en"
+>
+    <head>
+        <title>Registration page</title>
+        <LINK rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css">
+    </head>
+            <body>
+                <h1>Registration page</h1>
+                    <div class="container">
+                    <!--/*@thymesVar id="user" type="com.example.demo.dob.User"*/-->
+                    <form th:action="registrationProcess" method="post"
+                    style="max-width: 800px; margin: 0 auto" th:object="${user}">
+                    <div class="m-5">
+                        <div class="form-group row">
+                            <label class="col-form-label col-4">Name</label>
+                            <div class="col-8">
+                                <input type="text" th:field="*{userName}" required/>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-form-label col-4">Last name</label>
+                            <div class="col-8">
+                                <input type="text" th:field="*{secondName}" required/>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-form-label col-4">Telephone</label>
+                            <div class="col-8">
+                                <input type="text" th:field="*{phoneNumber}" required/>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-form-label col-4">E-mail</label>
+                            <div class="col-8">
+                                <input type="email" th:field="*{email}" required/>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-form-label col-4">Password</label>
+                            <div class="col-8">
+                                <input type="password" th:field="*{password}" required/>
+                            </div>
+                        </div>
+                    </div>
+                        <p></p>
+                        <button type="submit">submit</button>
+                    </form>
+            </div>
+            </body>
+            </html>
+
+
+

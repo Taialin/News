@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+    <changeSet id="create_table_newss" author="smon">
+        <preConditions onFail="CONTINUE">
+            <not>
+                <tableExists tableName="newss"/>
+            </not>
+        </preConditions>
+        <createTable tableName="newsss">
+            <column autoIncrement="true" name="id" type="bigint">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column  name="title" type="varchar(45)">
+                <constraints  nullable="false" unique="true"/>
+            </column>
+            <column  name="link" type="varchar(45)">
+                <constraints nullable="false" unique="false"/>
+            </column>
+            <column  name="pub_date" type="varchar(45)">
+                <constraints  nullable="false" unique="true"/>
+            </column>
+            <column  name="creator" type="varchar(45)">
+                <constraints  nullable="false" unique="true"/>
+            </column>
+            <column  name="category" type="varchar(45)">
+                <constraints  nullable="false" unique="true"/>
+            </column>
+            <column  name="guid" type="varchar(45)">
+                <constraints  nullable="false" unique="true"/>
+            </column>
+            <column  name="description" type="varchar(200)">
+                <constraints  nullable="false" unique="true"/>
+            </column>
+        </createTable>
+    </changeSet>
+</databaseChangeLog>
