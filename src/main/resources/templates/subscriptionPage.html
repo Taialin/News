@@ -1,13 +1,62 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-<form name="f" th:action="subscription" method="post">
-    <p>dmfl</p>
-</form>
+                <!DOCTYPE html>
+                <html lang="en">
+                <head>
+                    <meta charset="UTF-8">
+                </head>
+                <body>
 
-</body>
-</html>
+                <!--/*@thymesVar id="subscription" type="com.example.news.dob.Subscriptions"*/-->
+                <form name='f' th:action="subscription" method='POST' th:object="${subscription}">
+                    <LINK rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css">
+                    <!--/*@thymesVar id="useName" type="com.example.news.dob.User"*/-->
+                    <h2 th:text="'Subscriptions for ' + ${useName}" ></h2>
+                    <ul>
+                        <li><a th:href="@{newsView}">subscriptionPage</a></li>
+                    </ul>
+                    <div>
+                        <div>
+                            Filter:
+                            <label>
+                                <!--/*@thymesVar id="keyword" type="com.example.news.repository.NewsRepository"*/-->
+                                <input type="text" name="keyword" th:value="${keyword}" required/>
+                            </label>
+                            &nbsp;
+                            <input type="submit" value="search"/>
+                            &nbsp;
+                            <input type="button" value="clear" onclick="clearFilter()"/>
+
+                        </div>
+                        <p></p>
+                    </div>
+                </form>
+                <table border="2" cellpadding="10">
+                    <thead>
+                    <tr>
+                        <th>id</th>
+                        <th>titleOfSub</th>
+                        <th>cost</th>
+                        <th>status</th>
+                        <th>term</th>
+
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <!--/*@thymesVar id="oneNote" type="com.example.news.dob.Subscriptions"*/-->
+                    <tr th:each="oneNote: ${subscription}">
+                        <td th:text="${oneNote.id}"></td>
+                        <td th:text="${oneNote.titleOfSub}"></td>
+                        <td th:text="${oneNote.cost}"></td>
+                        <td th:text="${oneNote.status}"></td>
+                        <td th:text="${oneNote.term}"></td>
+
+                    </tr>
+                    </tbody>
+                </table>
+                </body>
+
+                <script type="text/javascript">
+                    function clearFilter() {
+                        window.location = '/subscriptionPage.html';
+                    }
+                </script>
+                </html>
