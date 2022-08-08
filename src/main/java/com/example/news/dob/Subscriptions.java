@@ -18,7 +18,7 @@ public class Subscriptions {
     private int status;
     private Date term;
 
-    @ManyToMany(fetch = FetchType.EAGER)
+/*    @ManyToMany(fetch = FetchType.EAGER)
     @JsonIgnore
     @JoinTable(
             name = "user_choice",
@@ -33,7 +33,7 @@ public class Subscriptions {
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "sub_id"))
 
-    private Set<User> users;
+    private Set<User> users;*/
 
     public Subscriptions(String titleOfSub, int cost, int status, Date term) {
         this.titleOfSub = titleOfSub;

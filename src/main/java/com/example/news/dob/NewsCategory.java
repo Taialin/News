@@ -22,6 +22,22 @@ public class NewsCategory {
             inverseJoinColumns = @JoinColumn(name = "category_id"))
     private Set<MyNews> news;
 
+/*    @ManyToMany(fetch = FetchType.EAGER)
+    @JsonIgnore
+    @JoinTable(
+            name = "user_choice",
+            joinColumns = @JoinColumn(name = "sub_id"),
+            inverseJoinColumns = @JoinColumn(name = "news_id"))
+    private Set<User> subscriptions;
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JsonIgnore
+    @JoinTable(
+            name = "user_choice",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "news_id"))
+    private Set<Subscriptions>  users;*/
+
     public NewsCategory() {
 
     }

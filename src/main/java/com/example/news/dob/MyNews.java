@@ -22,7 +22,6 @@ public class MyNews {
     private String creator;
     private String guid;
     private String description;
-    private int cost;
     @ManyToMany(fetch = FetchType.EAGER)
     @JsonIgnore
     @JoinTable(
@@ -30,6 +29,7 @@ public class MyNews {
             joinColumns = @JoinColumn(name = "category_id"),
             inverseJoinColumns = @JoinColumn(name = "news_id"))
     private Set<NewsCategory> categories;
+/*
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JsonIgnore
@@ -46,22 +46,23 @@ public class MyNews {
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "news_id"))
     private Set<Subscriptions> subscriptions;
+*/
 
-    public MyNews(String title, String link, String pubDate, String creator, String uri, String value, List<Price> allById, Set<NewsCategory> categories){
 
-    }
 
-    public MyNews(String title, String link, String pubDate, String creator, String guid, String description, int cost, Set<NewsCategory> categories) {
+    public MyNews(String title, String link, String pubDate, String creator, String guid, String description, Set<NewsCategory> categories) {
         this.title = title;
         this.link = link;
         this.pubDate = pubDate;
         this.creator = creator;
         this.guid = guid;
         this.description = description;
-        this.cost = cost;
         this.categories = categories;
     }
 
+    public MyNews() {
+
+    }
 
     public Long getId() {
         return id;
@@ -127,13 +128,6 @@ public class MyNews {
         this.categories = categories;
     }
 
-    public int getCost() {
-        return cost;
-    }
-
-    public void setCost(int cost) {
-        this.cost = cost;
-    }
 }
 
 

@@ -60,7 +60,6 @@ public class RssFeedView {
                             entry.getAuthor().toString(),
                             entry.getUri(),
                             entry.getDescription().getValue(),
-                            priceService.findAllById(1L),
                             categories
                     )
             );

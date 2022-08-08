@@ -11,6 +11,9 @@ public interface NewsServices {
     boolean isExist(String newsTitle);
     List<MyNews> getAllNews();
     List<MyNews> getAllNews(String keyword);
+
+    boolean deleteNews(Long newsId);
+
     List<MyNews> findByTitle(String title);
     List<MyNews> findAllByCategory(List<String> category);
 

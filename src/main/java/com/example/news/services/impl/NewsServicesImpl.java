@@ -2,6 +2,7 @@ package com.example.news.services.impl;
 
 import com.example.news.dob.MyNews;
 import com.example.news.dob.NewsCategory;
+import com.example.news.dob.User;
 import com.example.news.repository.NewsRepository;
 import com.example.news.services.NewsCategoryServices;
 import com.example.news.services.NewsServices;
@@ -19,6 +20,8 @@ public class NewsServicesImpl implements NewsServices {
     private NewsRepository repository;
     @Autowired
     private NewsCategoryServices newsCategoryServices;
+    @Autowired
+    private NewsRepository newsRepository;
 
     @Override
     public MyNews save(MyNews news) {
@@ -49,6 +52,16 @@ public class NewsServicesImpl implements NewsServices {
         matchedCategories.stream().map(NewsCategory::getNews).forEach(result::addAll);
         return result;
     }
+
+    @Override
+    public boolean deleteNews(Long newsId) {
+        if (newsRepository.findById(newsId).isPresent()) {
+            newsRepository.deleteById(newsId);
+            return true;
+        }
+        return false;
+    }
+
 
     @Override
     public List<MyNews> findByTitle(String title) {
