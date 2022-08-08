@@ -14,10 +14,16 @@ public class Price {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private int costs;
+    private String subForm;
 
 
     public Price() {
 
+    }
+
+    public Price(int costs, String subForm){
+        this.costs = costs;
+        this.subForm = subForm;
     }
 
     public Long getId() {
@@ -35,6 +41,14 @@ public class Price {
 
     public void setCosts(int costs) {
         this.costs = costs;
+    }
+
+    public String getSubForm() {
+        return subForm;
+    }
+
+    public void setSubForm(String subForm) {
+        this.subForm = subForm;
     }
 }
 

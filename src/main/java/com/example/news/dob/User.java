@@ -33,6 +33,23 @@ public class User implements UserDetails {
             inverseJoinColumns = @JoinColumn(name = "userId"))
     private Set<Role> roles;
 
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JsonIgnore
+    @JoinTable(
+            name = "user_choice",
+            joinColumns = @JoinColumn(name = "sub_id"),
+            inverseJoinColumns = @JoinColumn(name = "user_id"))
+    private Set<MyNews> news;
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JsonIgnore
+    @JoinTable(
+            name = "user_choice",
+            joinColumns = @JoinColumn(name = "news_id"),
+            inverseJoinColumns = @JoinColumn(name = "user_id"))
+    private Set<Subscriptions> subscriptions;
+
+
     public Long getId() {
         return id;
     }

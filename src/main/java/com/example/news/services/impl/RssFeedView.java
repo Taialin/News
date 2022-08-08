@@ -5,6 +5,7 @@ import com.example.news.dob.MyNews;
 import com.example.news.dob.NewsCategory;
 import com.example.news.services.NewsCategoryServices;
 import com.example.news.services.NewsServices;
+import com.example.news.services.PriceService;
 import com.rometools.rome.feed.synd.SyndCategory;
 import com.rometools.rome.feed.synd.SyndEntry;
 import com.rometools.rome.feed.synd.SyndFeed;
@@ -31,6 +32,10 @@ public class RssFeedView {
     @Autowired
     private NewsServices newsServices;
 
+    @Autowired
+    private PriceService priceService;
+
+
     public void persistAllNews(String url) throws IOException, FeedException {
 
         URL feedSource = new URL(url);
@@ -55,6 +60,7 @@ public class RssFeedView {
                             entry.getAuthor().toString(),
                             entry.getUri(),
                             entry.getDescription().getValue(),
+                            priceService.findAllById(1L),
                             categories
                     )
             );
