@@ -2,7 +2,6 @@ package com.example.news.services.impl;
 
 import com.example.news.dob.MyNews;
 import com.example.news.dob.NewsCategory;
-import com.example.news.dob.User;
 import com.example.news.repository.NewsRepository;
 import com.example.news.services.NewsCategoryServices;
 import com.example.news.services.NewsServices;
@@ -20,8 +19,7 @@ public class NewsServicesImpl implements NewsServices {
     private NewsRepository repository;
     @Autowired
     private NewsCategoryServices newsCategoryServices;
-    @Autowired
-    private NewsRepository newsRepository;
+
 
     @Override
     public MyNews save(MyNews news) {
@@ -55,15 +53,14 @@ public class NewsServicesImpl implements NewsServices {
 
     @Override
     public boolean deleteNews(Long newsId) {
-        if (newsRepository.findById(newsId).isPresent()) {
-            newsRepository.deleteById(newsId);
+        if (repository.findById(newsId).isPresent()) {
+            repository.deleteById(newsId);
             return true;
         }
         return false;
     }
 
-
-    @Override
+        @Override
     public List<MyNews> findByTitle(String title) {
         return getAllNews().stream().filter(news -> title.equals(news.getTitle())).collect(Collectors.toList());
     }

@@ -18,12 +18,16 @@
             <li><a th:href="@{subscriptionView}">Subscriptions</a></li>
             <li><a th:href="@{categoryView}">Categories</a></li>
         </ul>
+        <div class="form-actions">
+            <button  th:href="@{/save}" class="btn">Update news</button>
+        </div>
+        <p></p>
         <div>
             <div>
                 Filter:
                 <label>
                     <!--/*@thymesVar id="keyword" type="com.example.news.repository.NewsRepository"*/-->
-                    <input type="text" name="keyword" th:value="${keyword}" required/>
+                    <input type="text" name="keyword" th:value="${keyword}" />
                 </label>
                 &nbsp;
                 <input type="submit" value="search"/>
@@ -39,11 +43,13 @@
         <tr>
             <th>id</th>
             <th>title</th>
+            <th>description</th>
             <th>link</th>
             <th>pubDate</th>
             <th>creator</th>
             <th>category</th>
             <th>guid</th>
+            <th>delete</th>
         </tr>
         </thead>
         <tbody>
@@ -51,6 +57,7 @@
         <tr th:each="oneNote: ${news}">
             <td th:text="${oneNote.id}"></td>
             <td th:text="${oneNote.title}"></td>
+            <td th:text="${oneNote.description}"></td>
             <td th:text="${oneNote.link} "></td>
             <td th:text="${oneNote.pubDate}"></td>
             <td th:text="${oneNote.creator}"></td>
@@ -61,14 +68,32 @@
                 </div>
             </td>
             <td th:text="${oneNote.guid}"></td>
+            <td> <a th:href="@{'/delete/' + ${oneNote.id}}" >delete</a></td>
         </tr>
         </tbody>
     </table>
+          <!--  <div id="myModal2" class="modal fade">
+                <div class="modal-dialog modal-sm">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title">Подтвердите действия</h4>
+                        </div>
+                        <div class="modal-body">
+                            <th:block th:text="'TestTest '"></th:block>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Закрыть</button>
+                            <button type="button" class="btn btn-primary" >Сохранить изменения</button>
+                        </div>
+                    </div>
+                </div>
+            </div>-->
 </body>
 
 <script type="text/javascript">
     function clearFilter() {
-        window.location = '/news.html';
+        window.location = '/newsView';
     }
+
 </script>
 </html>

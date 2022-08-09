@@ -1,16 +1,20 @@
 package com.example.news.controllers;
 
-import com.example.news.services.impl.RssFeedView;
 import com.example.news.dob.MyNews;
 import com.example.news.services.NewsLinksServices;
 import com.example.news.services.NewsServices;
+import com.example.news.services.impl.RssFeedView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
+
+import static org.springframework.data.jpa.domain.AbstractPersistable_.id;
 
 @Controller
 public class NewsController {
@@ -38,7 +42,6 @@ public class NewsController {
     }
 
     @GetMapping("/save")
-    @CrossOrigin(origins = "*")
     public String fetchAllNews() throws Exception {
         rssFeedView.persistAllNews(newsLinksServices.getLink(2L).getLinkRSS());
         return "done";
@@ -53,4 +56,29 @@ public class NewsController {
     public List<MyNews> getAllNews(@RequestBody List<String> category) {
         return newsServices.findAllByCategory(category);
     }
+
+    @RequestMapping(value = "/yourNews", method = RequestMethod.POST)
+    public String newsAddForm(Model model) {
+        model.addAttribute("news", new MyNews());
+        return "saveYourNewsPage";
+    }
+
+    @PostMapping("/saveYourNews")
+    public String registrationProcess(MyNews news) {
+        newsServices.save(news);
+        return "redirect:/newsPage";
+    }
+
+    @GetMapping("/delete/{id}")
+    public String  deleteNews(@PathVariable("id") Long newsId, RedirectAttributes redirectAttributes) {
+        try {
+            newsServices.deleteNews(newsId);
+            redirectAttributes.addFlashAttribute("message","News number" + id + "has ben deleted");
+        }
+        catch (Exception e){
+            redirectAttributes.addFlashAttribute("message", e.getMessage());
+        }
+        return "redirect:/newsView";
+    }
+
 }

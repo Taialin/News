@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html
+        xmlns:th="http://www.thymeleaf.org"
+        lang="en"
+>
+<head>
+    <title>Registration page</title>
+    <LINK rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css">
+</head>
+<body>
+<h1>Registration page</h1>
+<div class="container">
+    <!--/*@thymesVar id="news" type="com.example.news.dob.MyNews"*/-->
+    <form th:action="saveYourNews" method="post"
+          style="max-width: 800px; margin: 0 auto" th:object="${news}">
+        <div class="m-5">
+            <div class="form-group row">
+                <label class="col-form-label col-4">Name</label>
+                <div class="col-8">
+                    <input type="text" th:field="*{id}" required/>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-form-label col-4">Password</label>
+                <div class="col-8">
+                    <input type="text" th:field="*{title}" required/>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-form-label col-4">Last name</label>
+                <div class="col-8">
+                    <input type="text" th:field="*{categories}" required/>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-form-label col-4">Telephone</label>
+                <div class="col-8">
+                    <input type="text" th:field="*{creator}" required/>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-form-label col-4">E-mail</label>
+                <div class="col-8">
+                    <input type="text" th:field="*{description}" required/>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-form-label col-4">Password</label>
+                <div class="col-8">
+                    <input type="text" th:field="*{guid}" required/>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-form-label col-4">Password</label>
+                <div class="col-8">
+                    <input type="text" th:field="*{link}" required/>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-form-label col-4">Password</label>
+                <div class="col-8">
+                    <input type="date" th:field="*{pubDate}" required/>
+                </div>
+            </div>
+        </div>
+        <p></p>
+        <button type="submit">update news</button>
+        <p></p>
+        <button type="submit">submit</button>
+    </form>
+</div>
+</body>
+</html>
+
+
+

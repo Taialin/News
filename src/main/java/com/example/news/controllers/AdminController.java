@@ -53,5 +53,21 @@ public class AdminController {
         return newsServices.save(news);
     }
 
+    @PostMapping("/adminn")
+    public String  deleteUser(@RequestParam(required = true, defaultValue = "" ) Long userId,
+                              @RequestParam(required = true, defaultValue = "" ) String action,
+                              Model model) {
+        if (action.equals("delete")){
+            userService.deleteUser(userId);
+        }
+        return "redirect:/adminPage";
+    }
+
+    @GetMapping("/adminn/gt/{userId}")
+    public String  getUser(@PathVariable("userId") Long userId, Model model) {
+        model.addAttribute("allUsers", userService.usergtList(userId));
+        return "adminPage";
+    }
+
 }
 

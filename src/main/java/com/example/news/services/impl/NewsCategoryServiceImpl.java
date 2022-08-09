@@ -11,8 +11,13 @@ import java.util.stream.Collectors;
 
 @Service
 public class NewsCategoryServiceImpl implements NewsCategoryServices {
-    @Autowired
+
+    final
     NewsCategoryRepository newsCategoryRepository;
+
+    public NewsCategoryServiceImpl(NewsCategoryRepository newsCategoryRepository) {
+        this.newsCategoryRepository = newsCategoryRepository;
+    }
 
     @Override
     public NewsCategory save(NewsCategory newsCategory) {

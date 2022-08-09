@@ -107,6 +107,13 @@
             <version>1.5.0</version>
         </dependency>
 
+        <!-- https://mvnrepository.com/artifact/org.liquibase/liquibase-core -->
+        <dependency>
+            <groupId>org.liquibase</groupId>
+            <artifactId>liquibase-core</artifactId>
+            <version>4.8.0</version>
+        </dependency>
+
     </dependencies>
 
     <build>

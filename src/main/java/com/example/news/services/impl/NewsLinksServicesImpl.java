@@ -9,8 +9,12 @@ import org.springframework.stereotype.Service;
 @Service
 public class NewsLinksServicesImpl implements NewsLinksServices {
 
-    @Autowired
+    final
     NewsLinksRepository newsLinksRepository;
+
+    public NewsLinksServicesImpl(NewsLinksRepository newsLinksRepository) {
+        this.newsLinksRepository = newsLinksRepository;
+    }
 
     @Override
     public NewsLinks getLink(Long Id) {
