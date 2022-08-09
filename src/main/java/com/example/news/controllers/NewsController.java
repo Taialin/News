@@ -6,7 +6,6 @@ import com.example.news.services.NewsServices;
 import com.example.news.services.impl.RssFeedView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -35,16 +34,10 @@ public class NewsController {
         return "newsPage";
     }
 
-    @GetMapping("/newsView")
+    @GetMapping("/newsUserView")
     public String newsPage(Model model) {
         model.addAttribute("news", newsServices.getAllNews());
         return "newsPage";
-    }
-
-    @GetMapping("/save")
-    public String fetchAllNews() throws Exception {
-        rssFeedView.persistAllNews(newsLinksServices.getLink(2L).getLinkRSS());
-        return "done";
     }
 
     @RequestMapping(value = "/seeByTitle", method = RequestMethod.GET)
@@ -57,19 +50,21 @@ public class NewsController {
         return newsServices.findAllByCategory(category);
     }
 
-    @RequestMapping(value = "/yourNews", method = RequestMethod.POST)
-    public String newsAddForm(Model model) {
+    @GetMapping(value = "/yourNews")
+    public String yourNews(Model model) {
         model.addAttribute("news", new MyNews());
         return "saveYourNewsPage";
     }
 
-    @PostMapping("/saveYourNews")
-    public String registrationProcess(MyNews news) {
+    @RequestMapping(value = "/saveYourNews", method = RequestMethod.POST)
+    public String savingProcess(MyNews news) {
+        news.setPubDate(toString());
         newsServices.save(news);
         return "redirect:/newsPage";
     }
 
-    @GetMapping("/delete/{id}")
+
+    @GetMapping("/deleteNews/{id}")
     public String  deleteNews(@PathVariable("id") Long newsId, RedirectAttributes redirectAttributes) {
         try {
             newsServices.deleteNews(newsId);
@@ -80,5 +75,6 @@ public class NewsController {
         }
         return "redirect:/newsView";
     }
+
 
 }

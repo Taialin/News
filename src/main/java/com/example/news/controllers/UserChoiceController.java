@@ -12,10 +12,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class UserChoiceController {
 
-    @Autowired
+ /*   @Autowired
     UserChoiceRepository userChoiceRepository;
 
-   /* @RequestMapping( value = "/userSub", method = RequestMethod.POST)
+    @RequestMapping( value = "/userSub", method = RequestMethod.POST)
     public String UserSubForm(Model model){
         model.addAttribute("userSubChoice", userChoiceRepository.findAllByUser_idAndSub_idNotNull());
         return "userSubChoicePage";

@@ -7,6 +7,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface UserChoiceRepository extends CrudRepository<UserChoice, Long > {
 
-   /* UserChoice findAllByUser_idAndNews_idNotNull();
+/*    UserChoice findAllByUser_idAndNews_idNotNull();
     UserChoice findAllByUser_idAndSub_idNotNull();*/
 }

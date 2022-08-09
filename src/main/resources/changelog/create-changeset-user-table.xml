@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+    <changeSet id="create_table_user" author="smon">
+        <preConditions onFail="CONTINUE">
+            <not>
+                <tableExists tableName="userr"/>
+            </not>
+        </preConditions>
+        <createTable tableName="user">
+            <column autoIncrement="true" name="id" type="bigint">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="userName" type="varchar(45)">
+                <constraints nullable="true" unique="false"/>
+            </column>
+            <column name="secondName" type="varchar(45)">
+                <constraints nullable="true" unique="false"/>
+            </column>
+            <column name="phoneNumber" type="varchar(45)">
+                <constraints nullable="true" unique="true"/>
+            </column>
+            <column name="password" type="varchar(200)">
+                <constraints nullable="true" unique="true"/>
+            </column>
+            <column name="email" type="varchar(45)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+        </createTable>
+    </changeSet>
+</databaseChangeLog>

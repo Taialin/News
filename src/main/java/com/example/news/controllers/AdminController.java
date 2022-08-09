@@ -11,9 +11,11 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import static org.springframework.data.jpa.domain.AbstractPersistable_.id;
 
 @Controller
-@RequestMapping("/admin")
 public class AdminController {
 
     @Autowired
@@ -27,17 +29,17 @@ public class AdminController {
     @Autowired
     private RssFeedView rssFeedView;
 
-    @RequestMapping( value = "/admin", method = RequestMethod.POST)
-    public String UserSubForm(Model model){
-        model.addAttribute("userSubChoice", userService.allUsers());
+    @RequestMapping(value = "/newsAdmin", method = RequestMethod.POST)
+    public String newsAdminForm(Model model,
+                           @Param("keyword") String keyword) {
+        model.addAttribute("newsAdmin", newsServices.getAllNews(keyword));
         return "adminPage";
-
     }
 
-    @GetMapping("/news")
-    public String newsPage(Model model) {
-        model.addAttribute("news", newsServices.getAllNews());
-        return "newsPage";
+    @GetMapping("/newsViewAdmin")
+    public String adminPage(Model model) {
+        model.addAttribute("newsAdmin", newsServices.getAllNews());
+        return "adminPage";
     }
 
     @GetMapping("/upDateNewsFrom")
@@ -47,27 +49,19 @@ public class AdminController {
         return "done";
     }
 
-    @GetMapping("/addOwnNews")
-    @CrossOrigin(origins = "*")
-    public MyNews news(@RequestBody MyNews news){
-        return newsServices.save(news);
-    }
 
-    @PostMapping("/adminn")
-    public String  deleteUser(@RequestParam(required = true, defaultValue = "" ) Long userId,
-                              @RequestParam(required = true, defaultValue = "" ) String action,
-                              Model model) {
-        if (action.equals("delete")){
-            userService.deleteUser(userId);
+    @GetMapping("/deleteUser/{id}")
+    public String  deleteUser(@PathVariable("id") Long userId, RedirectAttributes redirectAttributes) {
+        try {
+            newsServices.deleteNews(userId);
+            redirectAttributes.addFlashAttribute("message","User with id " + id + "has ben deleted");
         }
-        return "redirect:/adminPage";
+        catch (Exception e){
+            redirectAttributes.addFlashAttribute("message", e.getMessage());
+        }
+        return "redirect:/admin";
     }
 
-    @GetMapping("/adminn/gt/{userId}")
-    public String  getUser(@PathVariable("userId") Long userId, Model model) {
-        model.addAttribute("allUsers", userService.usergtList(userId));
-        return "adminPage";
-    }
 
 }
 

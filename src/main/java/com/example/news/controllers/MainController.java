@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
+
 public class MainController {
 
     @Autowired
@@ -58,4 +59,6 @@ public class MainController {
         }
         return "news";
     }
+
+
 }

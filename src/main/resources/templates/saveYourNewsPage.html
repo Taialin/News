@@ -8,63 +8,52 @@
     <LINK rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css">
 </head>
 <body>
-<h1>Registration page</h1>
+<h1>Add one note</h1>
 <div class="container">
+
     <!--/*@thymesVar id="news" type="com.example.news.dob.MyNews"*/-->
-    <form th:action="saveYourNews" method="post"
+    <form th:action="yourNews" method="post"
           style="max-width: 800px; margin: 0 auto" th:object="${news}">
         <div class="m-5">
             <div class="form-group row">
-                <label class="col-form-label col-4">Name</label>
-                <div class="col-8">
-                    <input type="text" th:field="*{id}" required/>
-                </div>
-            </div>
-            <div class="form-group row">
-                <label class="col-form-label col-4">Password</label>
+                <label class="col-form-label col-4">title</label>
                 <div class="col-8">
                     <input type="text" th:field="*{title}" required/>
                 </div>
             </div>
             <div class="form-group row">
-                <label class="col-form-label col-4">Last name</label>
+                <label class="col-form-label col-4">categories</label>
                 <div class="col-8">
                     <input type="text" th:field="*{categories}" required/>
                 </div>
             </div>
             <div class="form-group row">
-                <label class="col-form-label col-4">Telephone</label>
+                <label class="col-form-label col-4">creator</label>
                 <div class="col-8">
                     <input type="text" th:field="*{creator}" required/>
                 </div>
             </div>
             <div class="form-group row">
-                <label class="col-form-label col-4">E-mail</label>
+                <label class="col-form-label col-4">description</label>
                 <div class="col-8">
                     <input type="text" th:field="*{description}" required/>
                 </div>
             </div>
             <div class="form-group row">
-                <label class="col-form-label col-4">Password</label>
+                <label class="col-form-label col-4">guid</label>
                 <div class="col-8">
                     <input type="text" th:field="*{guid}" required/>
                 </div>
             </div>
             <div class="form-group row">
-                <label class="col-form-label col-4">Password</label>
-                <div class="col-8">
-                    <input type="text" th:field="*{link}" required/>
-                </div>
-            </div>
-            <div class="form-group row">
-                <label class="col-form-label col-4">Password</label>
+                <label class="col-form-label col-4">pubDate</label>
                 <div class="col-8">
                     <input type="date" th:field="*{pubDate}" required/>
                 </div>
             </div>
         </div>
         <p></p>
-        <button type="submit">update news</button>
+        <button type="submit" onclick="${/saveYourNews}">update news</button>
         <p></p>
         <button type="submit">submit</button>
     </form>

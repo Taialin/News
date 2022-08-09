@@ -1,6 +1,7 @@
 package com.example.news.services.impl;
 
 import com.example.news.dob.Role;
+import com.example.news.dob.Subscriptions;
 import com.example.news.dob.User;
 import com.example.news.repository.RoleRepository;
 import com.example.news.repository.UserRepository;
@@ -71,6 +72,10 @@ public class UserService implements UserDetailsService {
     }
 
 
+
+    public List<User> findAll() {
+        return (List<User>) userRepository.findAll();
+    }
 
 
     public List<User> usergtList(Long idMin) {

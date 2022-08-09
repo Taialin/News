@@ -8,20 +8,20 @@
 </head>
 <body>
 
-<!--/*@thymesVar id="newsAdmin" type="com.example.news.dob.MyNews"*/-->
-<form name='f' th:action="newsAdmin" method='POST' th:object="${newsAdmin}">
+
+<!--/*@thymesVar id="user" type="com.example.news.dob.User"*/-->
+<form name='f' th:action="user" method='POST' th:object="${user}">
     <LINK rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css">
-    <!--/*@thymesVar id="useName" type="com.example.news.dob.User"*/-->
-    <h2 >News for admin</h2>
+    <h2 >List of all users for admin</h2>
     <ul>
         <li><a th:href="@{newsViewAdmin}">News</a></li>
         <li><a th:href="@{subscriptionView}">Subscriptions</a></li>
         <li><a th:href="@{categoryView}">Categories</a></li>
         <li><a th:href="@{userListView}">List of users</a></li>
-        <li><a th:href="@{yourNews}">Add news</a></li>
+
     </ul>
     <div class="form-actions">
-        <button  th:action="@{/saveYourNews}" class="btn">Update news</button>
+        <button  th:href="@{/save}" class="btn">Update news</button>
     </div>
     <p></p>
     <div>
@@ -44,32 +44,20 @@
     <thead>
     <tr>
         <th>id</th>
-        <th>title</th>
-        <th>description</th>
-        <th>link</th>
-        <th>pubDate</th>
-        <th>creator</th>
-        <th>category</th>
-        <th>guid</th>
-        <th>delete</th>
+        <th>Name</th>
+        <th>Surname</th>
+        <th>email</th>
+        <th>Telephone</th>
     </tr>
     </thead>
     <tbody>
-    <!--/*@thymesVar id="oneNote" type="com.example.news.dob.MyNews"*/-->
-    <tr th:each="oneNote: ${newsAdmin}">
+    <!--/*@thymesVar id="oneNote" type="com.example.news.dob.User"*/-->
+    <tr th:each="oneNote: ${user}">
         <td th:text="${oneNote.id}"></td>
-        <td th:text="${oneNote.title}"></td>
-        <td th:text="${oneNote.description}"></td>
-        <td th:text="${oneNote.link} "></td>
-        <td th:text="${oneNote.pubDate}"></td>
-        <td th:text="${oneNote.creator}"></td>
-        <td>
-            <!--/*@thymesVar id="category" type="com.example.news.dob.NewsCategory"*/-->
-            <div th:each="category: ${oneNote.categories}">
-                <p th:text="${category.news_category}"></p>
-            </div>
-        </td>
-        <td th:text="${oneNote.guid}"></td>
+        <td th:text="${oneNote.userName}"></td>
+        <td th:text="${oneNote.secondName}"></td>
+        <td th:text="${oneNote.email}"></td>
+        <td th:text="${oneNote.phoneNumber} "></td>
         <td> <a th:href="@{'/deleteNews/' + ${oneNote.id}}" >delete</a></td>
     </tr>
     </tbody>
@@ -94,7 +82,7 @@
 
 <script type="text/javascript">
     function clearFilter() {
-        window.location = '/newsViewAdmin';
+        window.location = '/userListPage';
     }
 
 </script>

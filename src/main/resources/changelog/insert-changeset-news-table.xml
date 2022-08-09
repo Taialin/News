@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+    <changeSet id="insert-into-news" author="smon">
+        <insert tableName="news">
+            <column name="title" value="«На квартиру в Минске уже заработали». Молодые рэперы из Беларуси о сексе, деньгах и звуке"/>
+            <column name="link" value="https://people.onliner.by/2022/07/25/belorusskie-repery"/>
+            <column name="pub_date" value="Mon Jul 25 08:00:59 MSK 2022"/>
+            <column name="creator" value="Onliner"/>
+            <column name="category" value="Культура"/>
+            <column name="guid" value="https://people.onliner.by/2022/07/25/belorusskie-repery"/>
+            <column name="description" value="Сегодня мы говорим с небезызвестными артистами из Беларуси, у которых месяц назад вышел полноценный альбом «Приятно познакомиться». Встречайте: nkeeei, uniqe и ARTEM SHILOVETS. Эти зумеры уже понимают, что в жизни все возможно: сперва они покорили китайский TikTok, затем американский YouTube, пробились на российскую сцену и залетели в чарты стримингов, радио и ТВ. Теперь о них можно рассказать и на родине."/>
+        </insert>
+        <insert tableName="user">
+            <column name="title" value="«Два часа бесплатной мойки»: в Гродно состоится презентация новой мойки самообслуживания"/>
+            <column name="link" value="http://s13.ru/archives/cleangame"/>
+            <column name="pub_date" value="Fri Jul 22 14:16:00 MSK 2022"/>
+            <column name="creator" value="-"/>
+            <column name="category" value="новости города, презентация, Гродно, автомобили, услуги"/>
+            <column name="guid" value="http://s13.ru/archives/cleangame"/>
+            <column name="description" value="24 июля состоится официальная презентация мойки «Clean Game», на которой гостям обещают развлекательную программу, конкурсы и два часа бесплатной мойки."/>
+
+        </insert>
+    </changeSet>
+</databaseChangeLog>

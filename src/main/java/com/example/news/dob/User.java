@@ -33,7 +33,7 @@ public class User implements UserDetails {
             inverseJoinColumns = @JoinColumn(name = "userId"))
     private Set<Role> roles;
 
-/*    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany(cascade = CascadeType.ALL)
     @JsonIgnore
     @JoinTable(
             name = "user_choice",
@@ -41,13 +41,13 @@ public class User implements UserDetails {
             inverseJoinColumns = @JoinColumn(name = "user_id"))
     private Set<MyNews> news;
 
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany(cascade = CascadeType.ALL)
     @JsonIgnore
     @JoinTable(
             name = "user_choice",
             joinColumns = @JoinColumn(name = "news_id"),
             inverseJoinColumns = @JoinColumn(name = "user_id"))
-    private Set<Subscriptions> subscriptions;*/
+    private Set<Subscriptions> subscriptions;
 
 
     public Long getId() {

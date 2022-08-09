@@ -8,6 +8,8 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
+import org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler;
 
 @Configuration
 @EnableWebSecurity
@@ -17,7 +19,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
-
     @Override
     protected void configure(HttpSecurity httpSecurity) throws Exception {
         httpSecurity
@@ -26,26 +27,34 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 //Доступ только для не зарегистрированных пользователей
                 .antMatchers("/registration").not().fullyAuthenticated()
-                //Доступ только для пользователей с ролью Администратор
                 .antMatchers("/admin").hasRole("ADMIN")
+
                 .antMatchers("/user").hasRole("USER")
-               // .antMatchers("/news/news.html").hasRole("USER")
+                //Доступ только для пользователей с ролью Администратор
                 //Доступ разрешен всем пользователей
                 .antMatchers("/", "/resources/**").permitAll()
-                .antMatchers("/save").permitAll()
                 //Все остальные страницы требуют аутентификации
                 .anyRequest().authenticated()
                 .and()
-                //Настройка для входа в систему
                 .formLogin().loginPage("/login")
-
-                //Перенарпавление на главную страницу после успешного входа
-                .defaultSuccessUrl("/newsView")
+                .defaultSuccessUrl("/newsViewAdmin")
                 .permitAll()
                 .and()
                 .logout()
                 .permitAll()
                 .logoutSuccessUrl("/first");
+
+                //Настройка для входа в систему
+              /* .formLogin(formLogin -> formLogin
+                      .successHandler(new CustomAuthenticationSuccessHandler()).loginPage("/login"));
+
+*/        //Перенарпавление на главную страницу после успешного входа
+              /*  .defaultSuccessUrl("/newsView")
+                .permitAll()
+                .and()
+                .logout()
+                .permitAll()
+                .logoutSuccessUrl("/first");*/
     }
 
     @Autowired
