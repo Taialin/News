@@ -1,8 +1,6 @@
 package com.example.news.dob;
 
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import javax.persistence.*;
 
 @Entity
@@ -11,15 +9,18 @@ public class UserChoice {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private int sub_id;
-    private int news_id;
-    private int user_id;
+    @Column(name = "sub_id")
+    private int subId;
+    @Column(name = "news_id")
+    private int newsId;
+    @Column(name = "user_id")
+    private int userId;
 
  
-    public UserChoice(int sub_id, int news_id, int user_id) {
-        this.sub_id = sub_id;
-        this.news_id = news_id;
-        this.user_id = user_id;
+    public UserChoice(int subId, int newsId, int userId) {
+        this.subId = subId;
+        this.newsId = newsId;
+        this.userId = userId;
     }
 
     public Long getId() {
@@ -30,28 +31,28 @@ public class UserChoice {
         this.id = id;
     }
 
-    public int getNews_id() {
-        return news_id;
+    public int getNewsId() {
+        return newsId;
     }
 
-    public void setNews_id(int news_id) {
-        this.news_id = news_id;
+    public void setNewsId(int news_id) {
+        this.newsId = news_id;
     }
 
-    public int getUser_id() {
-        return user_id;
+    public int getUserId() {
+        return userId;
     }
 
-    public void setUser_id(int user_id) {
-        this.user_id = user_id;
+    public void setUserId(int user_id) {
+        this.userId = user_id;
     }
 
-    public int getSub_id() {
-        return sub_id;
+    public int getSubId() {
+        return subId;
     }
 
-    public void setSub_id(int sub_id) {
-        this.sub_id = sub_id;
+    public void setSubId(int sub_id) {
+        this.subId = sub_id;
     }
 
 

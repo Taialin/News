@@ -18,6 +18,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     private UserService userService;
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
+    @Autowired
+    private CustomAuthenticationSuccessHandler customAuthenticationSuccessHandler;
 
     @Override
     protected void configure(HttpSecurity httpSecurity) throws Exception {
@@ -36,25 +38,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 //Все остальные страницы требуют аутентификации
                 .anyRequest().authenticated()
                 .and()
-                .formLogin().loginPage("/login")
-                .defaultSuccessUrl("/newsViewAdmin")
+                .formLogin().successHandler(customAuthenticationSuccessHandler).loginPage("/login")
                 .permitAll()
                 .and()
                 .logout()
                 .permitAll()
                 .logoutSuccessUrl("/first");
-
-                //Настройка для входа в систему
-              /* .formLogin(formLogin -> formLogin
-                      .successHandler(new CustomAuthenticationSuccessHandler()).loginPage("/login"));
-
-*/        //Перенарпавление на главную страницу после успешного входа
-              /*  .defaultSuccessUrl("/newsView")
-                .permitAll()
-                .and()
-                .logout()
-                .permitAll()
-                .logoutSuccessUrl("/first");*/
     }
 
     @Autowired

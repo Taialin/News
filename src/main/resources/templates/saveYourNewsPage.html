@@ -12,7 +12,7 @@
 <div class="container">
 
     <!--/*@thymesVar id="news" type="com.example.news.dob.MyNews"*/-->
-    <form th:action="yourNews" method="post"
+    <form th:action="saveYourNews" method="post"
           style="max-width: 800px; margin: 0 auto" th:object="${news}">
         <div class="m-5">
             <div class="form-group row">
@@ -24,7 +24,11 @@
             <div class="form-group row">
                 <label class="col-form-label col-4">categories</label>
                 <div class="col-8">
-                    <input type="text" th:field="*{categories}" required/>
+                    <select class="form-control" name="categories" id="categories" th:field="*{categories}">
+                        <!--/*@thymesVar id="category" type="com.example.news.dob.NewsCategory"*/-->
+                        <option th:each="category : ${allCategories}" th:value="${category.id}" th:text="${category.news_category}">
+                        </option>
+                    </select>
                 </div>
             </div>
             <div class="form-group row">

@@ -1,6 +1,7 @@
 package com.example.news.controllers;
 
 import com.example.news.dob.MyNews;
+import com.example.news.services.NewsCategoryServices;
 import com.example.news.services.NewsLinksServices;
 import com.example.news.services.NewsServices;
 import com.example.news.services.impl.RssFeedView;
@@ -25,6 +26,8 @@ public class NewsController {
     private NewsLinksServices newsLinksServices;
     @Autowired
     private RssFeedView rssFeedView;
+    @Autowired
+    private NewsCategoryServices newsCategoryServices;
 
 
     @RequestMapping(value = "/news", method = RequestMethod.POST)
@@ -52,6 +55,7 @@ public class NewsController {
 
     @GetMapping(value = "/yourNews")
     public String yourNews(Model model) {
+        model.addAttribute("allCategories", newsCategoryServices.findAll());
         model.addAttribute("news", new MyNews());
         return "saveYourNewsPage";
     }
@@ -60,7 +64,7 @@ public class NewsController {
     public String savingProcess(MyNews news) {
         news.setPubDate(toString());
         newsServices.save(news);
-        return "redirect:/newsPage";
+        return "newsViewAdmin";
     }
 
 
@@ -74,6 +78,7 @@ public class NewsController {
             redirectAttributes.addFlashAttribute("message", e.getMessage());
         }
         return "redirect:/newsView";
+
     }
 
 

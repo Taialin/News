@@ -1,7 +1,5 @@
 package com.example.news.services.impl;
 
-import com.example.news.dob.Role;
-import com.example.news.dob.Subscriptions;
 import com.example.news.dob.User;
 import com.example.news.repository.RoleRepository;
 import com.example.news.repository.UserRepository;
@@ -14,7 +12,6 @@ import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -50,19 +47,6 @@ public class UserService implements UserDetailsService {
         return userRepository.findAll();
     }
 
-    public boolean save(User user) {
-        User userFromDB = userRepository.findByUserName(user.getUsername());
-
-        if (userFromDB != null) {
-            return false;
-        }
-
-        user.setRoles(Collections.singleton(new Role(1L, "ROLE_USER")));
-        user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
-        userRepository.save(user);
-        return true;
-    }
-
     public boolean deleteUser(Long userId) {
         if (userRepository.findById(userId).isPresent()) {
             userRepository.deleteById(userId);
@@ -78,12 +62,8 @@ public class UserService implements UserDetailsService {
     }
 
 
-    public List<User> usergtList(Long idMin) {
+    public List<User> userList(Long idMin) {
         return em.createQuery("SELECT u FROM User u WHERE u.id > :paramId", User.class)
                 .setParameter("paramId", idMin).getResultList();
     }
-
-
-
-
 }
