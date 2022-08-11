@@ -33,6 +33,8 @@ public class SubImpl implements SubscriptionsServices {
         return (List<Subscriptions>) repository.findAll();
     }
 
+
+
 /*    @Override
     public boolean existsById(BigInteger id) {
         return repository.existsById(id);

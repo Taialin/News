@@ -39,6 +39,7 @@
                         <th>cost</th>
                         <th>status</th>
                         <th>term</th>
+                        <th>Subscribe</th>
 
                     </tr>
                     </thead>
@@ -50,7 +51,7 @@
                         <td th:text="${oneNote.cost}"></td>
                         <td th:text="${oneNote.status}"></td>
                         <td th:text="${oneNote.term}"></td>
-
+                        <td> <a th:href="@{'/addSubsctiption/' + ${oneNote.id}}" >delete</a></td>
                     </tr>
                     </tbody>
                 </table>

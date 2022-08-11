@@ -4,10 +4,12 @@ import com.example.news.dob.UserChoice;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public interface UserChoiceRepository extends CrudRepository<UserChoice, Long> {
 
-    UserChoice findUserChoiceByUserIdAndNewsIdNotNull(int userId);
+    List<UserChoice> findUserChoicesByUserIdAndNewsIdNotNull(int userId);
 
-    UserChoice findUserChoiceByUserIdAndSubIdNotNull(int userId);
+    List<UserChoice> findUserChoicesByUserIdAndSubIdNotNull(int userId);
 }

@@ -1,6 +1,7 @@
 package com.example.news.dob;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import liquibase.pro.packaged.S;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 //import org.springframework.security.core.GrantedAuthority;
@@ -143,6 +144,14 @@ public class User implements UserDetails {
 
     public String getPasswordConfirm() {
         return passwordConfirm;
+    }
+
+    public Set<Subscriptions> getSubscriptions() {
+        return subscriptions;
+    }
+
+    public void setSubscriptions(Set<Subscriptions> subscriptions) {
+        this.subscriptions = subscriptions;
     }
 }
 

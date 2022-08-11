@@ -6,5 +6,47 @@
 </head>
 <body>
 
+
+<!--/*@thymesVar id="userNews" type="com.example.news.dob.UserChoice"*/-->
+<form name='f' th:action="userNews" method='POST' th:object="${userNews}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <div >
+        <img src="https://img.freepik.com/premium-vector/figure-person-walk-icon-pedestrian-side-sign-vector-people-line-silhouette-human_352905-478.jpg" alt="John" style="width:10%">
+        <h1> subscriptions </h1>
+        <p class="title">user</p>
+        <table border="2" cellpadding="10">
+            <thead>
+            <tr>
+                <th>id</th>
+                <th>My subscriptions</th>
+                <th>price</th>
+                <th>user</th>
+            </tr>
+            </thead>
+            <tbody>
+            <!--/*@thymesVar id="oneNote" type="com.example.news.dob.UserChoice"*/-->
+            <tr th:each="oneNote: ${userNews}">
+                <td th:text="${oneNote.id}"></td>
+                <td th:text="${oneNote.userId}"></td>
+                <td th:text="${oneNote.subId}"></td>
+                <td>
+                    <!--/*@thymesVar id="newsLinks" type="com.example.news.dob.NewsLinks"*/-->
+                    <div th:each="newsLinks: ${oneNote.newsId}">
+                        <p th:text="${newsLinks.linkRSS.tr}"></p>
+                    </div>
+                </td>
+              <!--  &lt;!&ndash;/*@thymesVar id="user" type="com.example.news.dob.User"*/&ndash;&gt;
+                <td><div th:each="user: ${ oneNote.userId}">
+                    <p th:text="${user.username}"></p>
+                </div></td>-->
+
+            </tr>
+            </tbody>
+        </table>
+        <p><button></button></p>
+    </div>
+</form>
+
 </body>
 </html>

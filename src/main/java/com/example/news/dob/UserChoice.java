@@ -4,7 +4,7 @@ package com.example.news.dob;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "ucer_choice")
+@Table(name = "user_choice")
 public class UserChoice {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,6 +21,10 @@ public class UserChoice {
         this.subId = subId;
         this.newsId = newsId;
         this.userId = userId;
+    }
+
+    public UserChoice() {
+
     }
 
     public Long getId() {
