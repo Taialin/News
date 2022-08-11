@@ -7,8 +7,9 @@
 <body>
 
 
-<!--/*@thymesVar id="userNews" type="com.example.news.dob.UserChoice"*/-->
-<form name='f' th:action="userNews" method='POST' th:object="${userNews}">
+<!--/*@thymesVar id="profile" type="com.example.news.dob.UserChoice"*/-->
+<!--/*@thymesVar id="profile" type="com.example.news.dob.UserChoice"*/-->
+<form name='f' th:action="profile" method='POST' th:object="${profile}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <div >
@@ -22,31 +23,50 @@
                 <th>My subscriptions</th>
                 <th>price</th>
                 <th>user</th>
+                <th>check</th>
             </tr>
             </thead>
             <tbody>
-            <!--/*@thymesVar id="oneNote" type="com.example.news.dob.UserChoice"*/-->
-            <tr th:each="oneNote: ${userNews}">
+
+            <tr th:each="oneNote: ${profile}">
+                <!--/*@thymesVar id="oneNote" type="com.example.news.dob.UserChoice"*/-->
                 <td th:text="${oneNote.id}"></td>
-                <td th:text="${oneNote.userId}"></td>
-                <td th:text="${oneNote.subId}"></td>
                 <td>
-                    <!--/*@thymesVar id="newsLinks" type="com.example.news.dob.NewsLinks"*/-->
-                    <div th:each="newsLinks: ${oneNote.newsId}">
-                        <p th:text="${newsLinks.linkRSS.tr}"></p>
+
+                    <!--/*@thymesVar id="sub" type="com.example.news.dob.Subscriptions"*/-->
+                    <!--/*@thymesVar id="subTitle" type="com.example.news.dob.Subscriptions"*/-->
+                    <div th:each="subTitle: ${sub}">
+                        <p th:text="${subTitle.titleOfSub}"></p>
                     </div>
                 </td>
-              <!--  &lt;!&ndash;/*@thymesVar id="user" type="com.example.news.dob.User"*/&ndash;&gt;
-                <td><div th:each="user: ${ oneNote.userId}">
-                    <p th:text="${user.username}"></p>
-                </div></td>-->
+                <td>
+                    <!--/*@thymesVar id="price" type="com.example.news.dob.Price"*/-->
+                    <!--/*@thymesVar id="onePrice" type="com.example.news.dob.Price"*/-->
+                    <div th:each="onePrice: ${price}">
+                        <p th:text="${onePrice.costs}"></p>
+                    </div>
+                </td>
+                <td>
+                    <div th:each="oneUser: ${user}">
+                        <!--/*@thymesVar id="oneUser" type="com.example.news.dob.User"*/-->
+                        <p th:text="${oneUser.userName}"></p>
+                    </div>
+                </td>
 
+                <td> <BUTTON id="btn" th:href="@{'/unsubscribe/' + ${oneNote.id}}" >unsubscribe</BUTTON></td>
             </tr>
             </tbody>
         </table>
         <p><button></button></p>
     </div>
 </form>
+<SCRIPT>
+    const btn = document.getElementById('btn');
 
+    // ✅ Change button text on click
+    btn.addEventListener('click', function handleClick() {
+        btn.textContent = 'Button clicked';
+    });
+</SCRIPT>
 </body>
 </html>

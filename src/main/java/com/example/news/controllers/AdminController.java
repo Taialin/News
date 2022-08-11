@@ -50,17 +50,7 @@ public class AdminController {
     }
 
 
-    @GetMapping("/deleteUser/{id}")
-    public String  deleteUser(@PathVariable("id") Long userId, RedirectAttributes redirectAttributes) {
-        try {
-            newsServices.deleteNews(userId);
-            redirectAttributes.addFlashAttribute("message","User with id " + id + "has ben deleted");
-        }
-        catch (Exception e){
-            redirectAttributes.addFlashAttribute("message", e.getMessage());
-        }
-        return "redirect:/admin";
-    }
+
 
 
 }

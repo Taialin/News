@@ -62,9 +62,8 @@ public class NewsController {
 
     @RequestMapping(value = "/saveYourNews", method = RequestMethod.POST)
     public String savingProcess(MyNews news) {
-        news.setPubDate(toString());
         newsServices.save(news);
-        return "newsViewAdmin";
+        return "redirect:/newsViewAdmin";
     }
 
 
@@ -77,7 +76,7 @@ public class NewsController {
         catch (Exception e){
             redirectAttributes.addFlashAttribute("message", e.getMessage());
         }
-        return "redirect:/newsView";
+        return "redirect:/newsViewAdmin";
 
     }
 

@@ -11,9 +11,11 @@
                     <!--/*@thymesVar id="useName" type="com.example.news.dob.User"*/-->
                     <h2 th:text="'Subscriptions for ' + ${useName}" ></h2>
                     <ul>
-                        <li><a th:href="@{newsUserView}">News</a></li>
+                        <li><a th:href="@{newsViewAdmin}">News</a></li>
                         <li><a th:href="@{subscriptionView}">Subscriptions</a></li>
                         <li><a th:href="@{categoryView}">Categories</a></li>
+                        <li><a th:href="@{userListView}">List of users</a></li>
+                        <li><a th:href="@{}">Logout</a></li>
                     </ul>
                     <div>
                         <div>

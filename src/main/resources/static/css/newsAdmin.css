@@ -1,0 +1,45 @@
+
+h2 {
+    font-family: sans-serif;
+    font-size: 40px;
+    text-transform: uppercase;
+}
+a {
+    font-size: 20px;
+    font-family: sans-serif;
+}
+form{
+    background-color: #e5ceb9;
+    width: 120%;
+}
+
+body{
+    background-color: #ece6e1;
+}
+
+tr{
+    border: 1px solid #000000;
+    padding: 8px;
+
+}
+
+li{
+    color: #311d0a;
+}
+th{
+    width: 100%;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #311d0a;
+    color: white;
+}
+
+button{
+    width: 100px;
+    height: 40px;
+    text-align: center;
+    padding: 10px;
+    font-family: Calibri;
+}
+
