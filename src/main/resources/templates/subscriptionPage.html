@@ -43,6 +43,7 @@
                         <th>term</th>
                         <th>Subscribe</th>
 
+
                     </tr>
                     </thead>
                     <tbody>
@@ -71,8 +72,8 @@
 
                         </td>
                         <td th:text="${oneNote.status}"></td>
-                        <td th:text="${oneNote.term}"></td>
-                        <td> <a th:href="@{'/addSubsctiption/' + ${oneNote.id}}" >delete</a></td>
+                        <td th:text="${oneNote.cost.subForm}"></td>
+                        <td> <a id="btn" th:href="@{'/save'}" >subscribe</a></td>
                     </tr>
                     </tbody>
                 </table>
@@ -82,5 +83,9 @@
                     function clearFilter() {
                         window.location = '/subscriptionPage.html';
                     }
+                    const btn = document.getElementById('btn');
+                    btn.addEventListener('click', function handleClick() {
+                        btn.textContent = 'added';
+                    });
                 </script>
                 </html>

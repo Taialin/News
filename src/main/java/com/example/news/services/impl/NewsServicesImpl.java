@@ -1,16 +1,13 @@
 package com.example.news.services.impl;
 
 import com.example.news.dob.MyNews;
-import com.example.news.dob.NewsCategory;
 import com.example.news.repository.NewsRepository;
 import com.example.news.services.NewsCategoryServices;
 import com.example.news.services.NewsServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class NewsServicesImpl implements NewsServices {
@@ -45,6 +42,11 @@ public class NewsServicesImpl implements NewsServices {
     @Override
     public List<MyNews> getAllNews(String keyword) {
         return repository.findAllByCategoryName(keyword);
+    }
+
+    @Override
+    public List<MyNews> save() {
+        return repository.findAll();
     }
 
     @Override

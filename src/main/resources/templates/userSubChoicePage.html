@@ -39,10 +39,10 @@
                 </div>
             </td>
             <td>
-                <!--/*@thymesVar id="price" type="com.example.news.dob.Price"*/-->
                 <!--/*@thymesVar id="onePrice" type="com.example.news.dob.Price"*/-->
-                <div th:each="onePrice: ${price}">
-                    <p th:text="${onePrice.costs}"></p>
+                <!--/*@thymesVar id="cost" type="com.example.news.dob.Price"*/-->
+                <div th:each="onePrice: ${cost}">
+                    <p th:if="${onePrice.costs == oneNote.id}" th:text="${onePrice.costs}"></p>
                 </div>
             </td>
             <td>
@@ -51,19 +51,10 @@
                     <p th:text="${oneUser.userName}"></p>
                 </div>
             </td>
-
-            <td> <BUTTON id="btn" th:href="@{'/unsubscribe/' + ${oneNote.id}} " >unsubscribe</BUTTON></td>
+            <td><a th:href="@{'/unsubscribe/' + ${oneNote.id}}">unsubscribe</a></td>
         </tr>
         </tbody>
     </table>
 </div>
-<SCRIPT>
-    const btn = document.getElementById('btn');
-
-    // ✅ Change button text on click
-    btn.addEventListener('click', function handleClick() {
-        btn.textContent = 'Button clicked';
-    });
-</SCRIPT>
 </body>
 </html>

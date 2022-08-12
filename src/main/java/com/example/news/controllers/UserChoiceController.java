@@ -6,8 +6,8 @@ import com.example.news.repository.SubscriptionsRepository;
 import com.example.news.repository.UserChoiceRepository;
 import com.example.news.services.PriceService;
 import com.example.news.services.SubscriptionsServices;
+import com.example.news.services.UserChoiceService;
 import com.example.news.services.impl.UserService;
-import com.example.news.services.impl.userChoiceServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
@@ -15,7 +15,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -36,9 +35,12 @@ public class UserChoiceController {
     @Autowired
     private SubscriptionsServices subscriptionsServices;
 
-
     @Autowired
     private SubscriptionsRepository subscriptionsRepository;
+
+    @Autowired
+    private UserChoiceService userChoiceService;
+
 
 
 
@@ -49,13 +51,14 @@ public class UserChoiceController {
     }*/
 
     @RequestMapping(value="/profile",method = RequestMethod.GET)
-    public String showProfilePage(Model model, @AuthenticationPrincipal User user) {
+    public String showProfilePage(Model model, @AuthenticationPrincipal User user, Subscriptions subscriptions) {
         user = userService.findUserById(user.getId());
         List<UserChoice> userChoices = userChoiceRepository.findUserChoicesByUserIdAndSubIdNotNull(Math.toIntExact(user.getId()));
         List<Long> subscriptionIds = userChoices.stream().map(userChoice -> Long.valueOf(userChoice.getSubId())).collect(Collectors.toList());
         model.addAttribute("profile", userChoices);
         model.addAttribute("user", user);
         model.addAttribute("sub", subscriptionsRepository.findAllById(subscriptionIds));
+        model.addAttribute("cost",  priceService.findAllById(subscriptions.getId()));
         return "userSubChoicePage";
     }
 
@@ -77,9 +80,9 @@ public class UserChoiceController {
     }
 
     @GetMapping("/unsubscribe/{id}")
-    public String  deleteNews(@PathVariable("id") Long subId, RedirectAttributes redirectAttributes) {
+    public String  deleteSubscriptions(@PathVariable("id") Long choiceId, RedirectAttributes redirectAttributes) {
         try {
-            subscriptionsServices.unsubscribe(subId);
+            userChoiceService.deleteSubscription(choiceId);
             redirectAttributes.addFlashAttribute("message","Unsubscribe " + id );
         }
         catch (Exception e){

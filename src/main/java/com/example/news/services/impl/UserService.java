@@ -55,12 +55,9 @@ public class UserService implements UserDetailsService {
         return false;
     }
 
-
-
     public List<User> findAll() {
         return (List<User>) userRepository.findAll();
     }
-
 
     public List<User> userList(Long idMin) {
         return em.createQuery("SELECT u FROM User u WHERE u.id > :paramId", User.class)

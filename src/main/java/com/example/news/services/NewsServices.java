@@ -12,6 +12,8 @@ public interface NewsServices {
     List<MyNews> getAllNews();
     List<MyNews> getAllNews(String keyword);
 
+    List<MyNews> save();
+
     boolean deleteNews(Long newsId);
 
 
