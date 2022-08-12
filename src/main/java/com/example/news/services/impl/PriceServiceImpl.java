@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class PriceServiceImpl implements PriceService {
@@ -20,5 +21,9 @@ public class PriceServiceImpl implements PriceService {
     public List<Price> findAllById(Long id) {
         return (List<Price>) priceRepository.findAllById(Collections.singleton(id));
     }
-
+    @Override
+    public Price findSubById(Long priceId) {
+        Optional<Price> userFromDb = priceRepository.findById(priceId);
+        return userFromDb.orElse(new Price());
+    }
 }

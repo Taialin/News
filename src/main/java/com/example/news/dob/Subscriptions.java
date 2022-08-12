@@ -1,10 +1,7 @@
 package com.example.news.dob;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import javax.persistence.*;
 import java.sql.Date;
-import java.util.Set;
 
 @Entity
 @Table(name = "subscriptions")
@@ -14,28 +11,13 @@ public class Subscriptions {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String titleOfSub;
-    private int cost;
+    @ManyToOne
+    @JoinColumn(name="cost")
+    private Price cost;
     private int status;
     private Date term;
 
-    @ManyToMany(cascade = CascadeType.ALL)
-    @JsonIgnore
-    @JoinTable(
-            name = "user_choice",
-            joinColumns = @JoinColumn(name = "news_id"),
-            inverseJoinColumns = @JoinColumn(name = "sub_id"))
-    private Set<MyNews> news;
-
-    @ManyToMany(cascade = CascadeType.ALL)
-    @JsonIgnore
-    @JoinTable(
-            name = "user_choice",
-            joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "sub_id"))
-
-    private Set<User> users;
-
-    public Subscriptions(String titleOfSub, int cost, int status, Date term) {
+    public Subscriptions(String titleOfSub, Price cost, int status, Date term) {
         this.titleOfSub = titleOfSub;
         this.cost = cost;
         this.status = status;
@@ -54,11 +36,11 @@ public class Subscriptions {
         this.titleOfSub = titleOfSub;
     }
 
-    public int getCost() {
+    public Price getCost() {
         return cost;
     }
 
-    public void setCost(int cost) {
+    public void setCost(Price cost) {
         this.cost = cost;
     }
 
@@ -84,13 +66,5 @@ public class Subscriptions {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public Set<User> getUsers() {
-        return users;
-    }
-
-    public void setUsers(Set<User> users) {
-        this.users = users;
     }
 }

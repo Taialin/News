@@ -6,7 +6,7 @@
 <body>
 
 <form name='f' th:action="categories" method='POST' >
-    <LINK rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css">
+    <link href="../static/css/newsAdmin.css" th:href="@{/css/newsAdmin.css}" rel="stylesheet" />
     <!--/*@thymesVar id="useName" type="com.example.news.dob.User"*/-->
     <h2 th:text="'Caregory for ' + ${useName}" ></h2>
     <ul>

@@ -8,9 +8,12 @@ a {
     font-size: 20px;
     font-family: sans-serif;
 }
+p {
+    font-size: 20px;
+    font-family: sans-serif;
+}
 form{
     background-color: #e5ceb9;
-    width: 120%;
 }
 
 body{
@@ -18,6 +21,7 @@ body{
 }
 
 tr{
+
     border: 1px solid #000000;
     padding: 8px;
 
@@ -27,9 +31,7 @@ li{
     color: #311d0a;
 }
 th{
-    width: 100%;
-    padding-top: 12px;
-    padding-bottom: 12px;
+    width: 20%;
     text-align: left;
     background-color: #311d0a;
     color: white;
@@ -41,5 +43,174 @@ button{
     text-align: center;
     padding: 10px;
     font-family: Calibri;
+}
+.tooltip {
+    position: relative;
+    display: inline-block;
+    border-bottom: 1px dotted black; /* Если вы хотите, чтобы точки под перемещаемым текстом */
+}
+
+/* Текст подсказки */
+.tooltip .tooltiptext {
+    visibility: hidden;
+    width: 120px;
+    background-color: #555;
+    color: #fff;
+    text-align: center;
+    padding: 5px 0;
+    border-radius: 6px;
+
+    /* Расположите текст подсказки */
+    position: absolute;
+    z-index: 1;
+    bottom: 125%;
+    left: 50%;
+    margin-left: -60px;
+
+    /* Исчезают в подсказке */
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+/* Подсказка стрелка */
+.tooltip .tooltiptext::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #555 transparent transparent transparent;
+}
+
+/* Отображение текста подсказки при наведении курсора мыши на контейнер подсказки */
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+    opacity: 1;
+}
+.overlay {
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1;
+    visibility: hidden;
+    /* фон затемнения */
+    background-color: rgba(0, 0, 0, 0.7);
+    opacity: 0;
+    position: fixed; /* фиксированное поцизионирование */
+    cursor: default; /* тип курсара */
+    -webkit-transition: opacity .5s;
+    -moz-transition: opacity .5s;
+    -ms-transition: opacity .5s;
+    -o-transition: opacity .5s;
+    transition: opacity .5s;
+}
+
+/*** Формируем стили модального окна ***/
+.popup {
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 10;
+    display: block;
+    visibility: hidden;
+    margin: 0 auto;
+    width: 30%;
+    min-width: 320px;
+    max-width: 600px;
+    /* фиксированное позиционирование, окно стабильно при прокрутке */
+    position: fixed;
+    padding: 15px;
+    border: 1px solid #383838;
+    /* скругление углов */
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    -ms-border-radius: 4px;
+    border-radius: 4px;
+    background-color: #FFFFFF;
+    /* внешняя тень блока */
+    -webkit-box-shadow: 0 0 6px rgba(0, 0, 0, 0.8);
+    -moz-box-shadow: 0 0 6px rgba(0, 0, 0, 0.8);
+    -ms-box-shadow: 0 0 6px rgba(0, 0, 0, 0.8);
+    -o-box-shadow: 0 0 6px rgba(0, 0, 0, 0.8);
+    box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.8);
+    /* полная прозрачность окна, появление при клике */
+    opacity: 0;
+    /* эффект перехода (появление) */
+    -webkit-transition: all ease .5s;
+    -moz-transition: all ease .5s;
+    -ms-transition: all ease .5s;
+    -o-transition: all ease .5s;
+    transition: all ease .5s;
+}
+/* активируем появление окна и затемнение фона */
+.overlay:target+.popup {
+    top: 20%; /* положение окна от верха страницы при появлении */
+    visibility: visible;
+    opacity: 1; /* убираем прозрачность */
+}
+/* формируем кнопку закрытия */
+.close {
+    position: absolute;
+    top: -10px;
+    right: -10px;padding: 0;
+    width: 20px;
+    height: 20px;
+    border: 2px solid #ccc;
+    -webkit-border-radius: 15px;
+    -moz-border-radius: 15px;
+    border-radius: 15px;
+    background-color: rgba(61, 61, 61, 0.8);
+    text-align: center;
+    text-decoration: none;
+    font-weight: bold;
+    line-height: 20px;
+
+}
+.close:before {
+    color: rgba(255, 255, 255, 0.9);
+    content: "X";
+    text-shadow: 0 -1px rgba(0, 0, 0, 0.9);
+    font-size: 12px;
+}
+.close:hover {
+    background-color: rgba(232, 189, 187, 0.8);
+}
+/* опционально при добавлении вложений */
+.popup p, .popup div {
+    margin-bottom: 10px;
+}
+
+
+/* button */
+
+.button {
+
+    font-size: 15px;
+    color: white;
+    width: 270px;
+    text-decoration: none;
+    padding: 10px 5px;
+    border-radius: 10px;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    font-family: Helvetica, Arial, sans-serif;
+    transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    -webkit-transition: all 0.3s;
+    cursor: pointer;
+
+}
+.button-blue {
+    background-color: #735736;
+}
+.button:hover {
+    background-color: #311d0a;
+}
+.button:active {
+    background-color: #624600;
+    box-shadow:0 0 0 0 #ffffff;
 }
 

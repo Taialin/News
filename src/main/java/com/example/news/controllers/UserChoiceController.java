@@ -1,10 +1,7 @@
 package com.example.news.controllers;
 
 
-import com.example.news.dob.MyNews;
-import com.example.news.dob.Price;
-import com.example.news.dob.Subscriptions;
-import com.example.news.dob.User;
+import com.example.news.dob.*;
 import com.example.news.repository.SubscriptionsRepository;
 import com.example.news.repository.UserChoiceRepository;
 import com.example.news.services.PriceService;
@@ -18,7 +15,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static org.springframework.data.jpa.domain.AbstractPersistable_.id;
 
@@ -52,12 +51,11 @@ public class UserChoiceController {
     @RequestMapping(value="/profile",method = RequestMethod.GET)
     public String showProfilePage(Model model, @AuthenticationPrincipal User user) {
         user = userService.findUserById(user.getId());
-        List<Subscriptions> sub = subscriptionsRepository.findAllById(user.getId());
-        List<Price> price = priceService.findAllById(user.getId());
-        model.addAttribute("profile", userChoiceRepository.findUserChoicesByUserIdAndNewsIdNotNull(Math.toIntExact(user.getId())));
+        List<UserChoice> userChoices = userChoiceRepository.findUserChoicesByUserIdAndSubIdNotNull(Math.toIntExact(user.getId()));
+        List<Long> subscriptionIds = userChoices.stream().map(userChoice -> Long.valueOf(userChoice.getSubId())).collect(Collectors.toList());
+        model.addAttribute("profile", userChoices);
         model.addAttribute("user", user);
-        model.addAttribute("sub", sub);
-        model.addAttribute("price", price);
+        model.addAttribute("sub", subscriptionsRepository.findAllById(subscriptionIds));
         return "userSubChoicePage";
     }
 

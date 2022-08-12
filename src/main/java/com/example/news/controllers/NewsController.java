@@ -43,16 +43,6 @@ public class NewsController {
         return "newsPage";
     }
 
-    @RequestMapping(value = "/seeByTitle", method = RequestMethod.GET)
-    public List<MyNews> getAllNews(String title) {
-        return newsServices.findByTitle(title);
-    }
-
-    @RequestMapping(value = "/seeAllByCategory", method = RequestMethod.POST)
-    public List<MyNews> getAllNews(@RequestBody List<String> category) {
-        return newsServices.findAllByCategory(category);
-    }
-
     @GetMapping(value = "/yourNews")
     public String yourNews(Model model) {
         model.addAttribute("allCategories", newsCategoryServices.findAll());

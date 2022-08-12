@@ -44,11 +44,7 @@ public class NewsServicesImpl implements NewsServices {
 
     @Override
     public List<MyNews> getAllNews(String keyword) {
-        List<NewsCategory> allCategories = newsCategoryServices.findAll();
-        List<NewsCategory> matchedCategories = allCategories.stream().filter(category -> keyword.equals(category.getNews_category())).collect(Collectors.toList());
-        List<MyNews> result = new ArrayList<>();
-        matchedCategories.stream().map(NewsCategory::getNews).forEach(result::addAll);
-        return result;
+        return repository.findAllByCategoryName(keyword);
     }
 
     @Override
@@ -58,26 +54,5 @@ public class NewsServicesImpl implements NewsServices {
             return true;
         }
         return false;
-    }
-
-        @Override
-    public List<MyNews> findByTitle(String title) {
-        return getAllNews().stream().filter(news -> title.equals(news.getTitle())).collect(Collectors.toList());
-    }
-
-    @Override
-    public List<MyNews> findAllByCategory(List<String> categories) {
-        List<MyNews> alLNews = repository.findAll();
-        List<MyNews> result = new ArrayList<>();
-        for (MyNews news : alLNews) {
-            for (String category : categories) {
-                boolean match = news.getCategories().stream().anyMatch(newsCategory -> category.equals(newsCategory.getNews_category()));
-                if (match) {
-                    result.add(news);
-                    break;
-                }
-            }
-        }
-        return result;
     }
 }

@@ -14,8 +14,6 @@ public interface NewsServices {
 
     boolean deleteNews(Long newsId);
 
-    List<MyNews> findByTitle(String title);
-    List<MyNews> findAllByCategory(List<String> category);
 
 
 }

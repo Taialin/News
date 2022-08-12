@@ -10,8 +10,9 @@
 
 <!--/*@thymesVar id="newsAdmin" type="com.example.news.dob.MyNews"*/-->
 <form name='f' th:action="newsAdmin" method='POST' th:object="${newsAdmin}">
-    <link href="../static/css/newsAdmin.css" th:href="@{/css/newsAdmin.css}" rel="stylesheet" />    <!--/*@thymesVar id="useName" type="com.example.news.dob.User"*/-->
-    <h2 >News for admin</h2>
+    <link href="../static/css/newsAdmin.css" th:href="@{/css/newsAdmin.css}" rel="stylesheet"/>
+    <!--/*@thymesVar id="useName" type="com.example.news.dob.User"*/-->
+    <h2>News for admin</h2>
     <ul>
         <li><a th:href="@{newsViewAdmin}">News</a></li>
         <li><a th:href="@{subscriptionView}">Subscriptions</a></li>
@@ -20,15 +21,14 @@
         <li><a th:href="@{yourNews}">Add news</a></li>
     </ul>
     <div class="form-actions">
-        <button  th:action="@{/saveYourNews}" class="btn">Update news</button>
+        <button th:action="@{/saveYourNews}" class="btn">Update news</button>
     </div>
     <p></p>
     <div>
         <div>
             Filter:
             <label>
-                <!--/*@thymesVar id="keyword" type="com.example.news.repository.NewsRepository"*/-->
-                <input type="text" name="keyword" th:value="${keyword}" />
+                <input type="text" name="keyword" th:value="${keyword}"/>
             </label>
             &nbsp;
             <input type="submit" value="search"/>
@@ -69,7 +69,7 @@
             </div>
         </td>
         <td th:text="${oneNote.guid}"></td>
-        <td> <a th:href="@{'/deleteNews/' + ${oneNote.id}}" >delete</a></td>
+        <td><a th:href="@{'/deleteNews/' + ${oneNote.id}}">delete</a></td>
     </tr>
     </tbody>
 </table>

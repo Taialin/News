@@ -7,7 +7,7 @@
 
                 <!--/*@thymesVar id="subscription" type="com.example.news.dob.Subscriptions"*/-->
                 <form name='f' th:action="subscription" method='POST' th:object="${subscription}">
-                    <LINK rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css">
+                    <link href="../static/css/newsAdmin.css" th:href="@{/css/newsAdmin.css}" rel="stylesheet" />
                     <!--/*@thymesVar id="useName" type="com.example.news.dob.User"*/-->
                     <h2 th:text="'Subscriptions for ' + ${useName}" ></h2>
                     <ul>
@@ -15,7 +15,7 @@
                         <li><a th:href="@{subscriptionView}">Subscriptions</a></li>
                         <li><a th:href="@{categoryView}">Categories</a></li>
                         <li><a th:href="@{userListView}">List of users</a></li>
-                        <li><a th:href="@{}">Logout</a></li>
+                   <!--     <li><a th:href="@{}">Logout</a></li>-->
                     </ul>
                     <div>
                         <div>
@@ -50,7 +50,26 @@
                     <tr th:each="oneNote: ${subscription}">
                         <td th:text="${oneNote.id}"></td>
                         <td th:text="${oneNote.titleOfSub}"></td>
-                        <td th:text="${oneNote.cost}"></td>
+                        <td>
+                            <div class="tooltip">
+                                <p th:text="${oneNote.cost.costs}"></p>
+                                <span class="tooltiptext">Текст подсказки</span>
+                            </div>
+                            <a></a>
+                            <a href="#win1" class="button button-blue">change cost</a>
+                            <a href="#x" class="overlay" id="win1"></a>
+                            <div class="popup">
+                                <div class="form-group row">
+                                    <label class="col-form-label col-4">Cost</label>
+                                    <div class="col-8">
+                                       <!-- <input type="text" th:field="*{oneNote.cost}" required/>-->
+                                    </div>
+                                </div>
+                                <button> save </button>
+                                <a class="close"title="Закрыть" href="#close"></a>
+                            </div>
+
+                        </td>
                         <td th:text="${oneNote.status}"></td>
                         <td th:text="${oneNote.term}"></td>
                         <td> <a th:href="@{'/addSubsctiption/' + ${oneNote.id}}" >delete</a></td>

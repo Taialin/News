@@ -1,11 +1,7 @@
 package com.example.news.controllers;
 
 import com.example.news.dob.MyNews;
-import com.example.news.dob.User;
-import com.example.news.repository.NewsRepository;
-import com.example.news.repository.UserRepository;
 import com.example.news.services.NewsServices;
-import liquibase.pro.packaged.M;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
@@ -13,9 +9,7 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.test.annotation.Rollback;
 
-import static liquibase.repackaged.net.sf.jsqlparser.util.validation.metadata.NamedObject.user;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)

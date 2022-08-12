@@ -1,7 +1,6 @@
 package com.example.news.dob;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import liquibase.pro.packaged.S;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 //import org.springframework.security.core.GrantedAuthority;
