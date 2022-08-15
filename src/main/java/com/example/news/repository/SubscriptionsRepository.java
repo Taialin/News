@@ -10,4 +10,5 @@ import java.util.List;
 public interface SubscriptionsRepository extends CrudRepository<Subscriptions, Long> {
 
     List<Subscriptions> findAllById(Long subId);
+    List<Subscriptions> findAllByCost(String cost);
 }

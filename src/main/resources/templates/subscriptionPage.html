@@ -18,18 +18,6 @@
                    <!--     <li><a th:href="@{}">Logout</a></li>-->
                     </ul>
                     <div>
-                        <div>
-                            Filter:
-                            <label>
-                                <!--/*@thymesVar id="keyword" type="com.example.news.repository.NewsRepository"*/-->
-                                <input type="text" name="keyword" th:value="${keyword}" required/>
-                            </label>
-                            &nbsp;
-                            <input type="submit" value="search"/>
-                            &nbsp;
-                            <input type="button" value="clear" onclick="clearFilter()"/>
-
-                        </div>
                         <p></p>
                     </div>
                 </form>
@@ -63,17 +51,20 @@
                                 <div class="form-group row">
                                     <label class="col-form-label col-4">Cost</label>
                                     <div class="col-8">
-                                       <!-- <input type="text" th:field="*{oneNote.cost}" required/>-->
+                                        <label>
+                                            <label th:action="@{'/subscriptionView/'+${oneNote.cost.id}}">
+                                                <input type="number" th:name="keyword"/>
+                                            </label>
                                     </div>
                                 </div>
-                                <button> save </button>
-                                <a class="close"title="Закрыть" href="#close"></a>
+                                <a th:href="@{'/subscriptionView/'+${oneNote.cost.id}}">save</a>
+                                <a class="close" title="Закрыть" href="#close"></a>
                             </div>
 
                         </td>
                         <td th:text="${oneNote.status}"></td>
                         <td th:text="${oneNote.cost.subForm}"></td>
-                        <td> <a id="btn" th:href="@{'/save'}" >subscribe</a></td>
+                        <td> <a id="btn" th:href="@{'/save/' + ${oneNote.id}}" >subscribe</a></td>
                     </tr>
                     </tbody>
                 </table>
@@ -83,9 +74,5 @@
                     function clearFilter() {
                         window.location = '/subscriptionPage.html';
                     }
-                    const btn = document.getElementById('btn');
-                    btn.addEventListener('click', function handleClick() {
-                        btn.textContent = 'added';
-                    });
                 </script>
                 </html>

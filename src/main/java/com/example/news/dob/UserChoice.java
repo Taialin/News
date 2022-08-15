@@ -11,15 +11,12 @@ public class UserChoice {
     private Long id;
     @Column(name = "sub_id")
     private int subId;
-    @Column(name = "news_id")
-    private int newsId;
     @Column(name = "user_id")
     private int userId;
 
  
     public UserChoice(int subId, int newsId, int userId) {
         this.subId = subId;
-        this.newsId = newsId;
         this.userId = userId;
     }
 
@@ -33,14 +30,6 @@ public class UserChoice {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public int getNewsId() {
-        return newsId;
-    }
-
-    public void setNewsId(int news_id) {
-        this.newsId = news_id;
     }
 
     public int getUserId() {
@@ -60,4 +49,6 @@ public class UserChoice {
     }
 
 
+    public void getSubId(int subId) {
+    }
 }

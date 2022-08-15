@@ -8,10 +8,5 @@ import java.util.List;
 
 @Repository
 public interface UserChoiceRepository extends CrudRepository<UserChoice, Long> {
-
-    List<UserChoice> findUserChoicesByUserIdAndNewsIdNotNull(int userId);
-
     List<UserChoice> findUserChoicesByUserIdAndSubIdNotNull(int userId);
-
-    UserChoice findById(int subId);
 }

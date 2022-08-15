@@ -32,17 +32,16 @@
             <!--/*@thymesVar id="oneNote" type="com.example.news.dob.UserChoice"*/-->
             <td th:text="${oneNote.id}"></td>
             <td>
-                <!--/*@thymesVar id="sub" type="com.example.news.dob.Subscriptions"*/-->
+
                 <!--/*@thymesVar id="subTitle" type="com.example.news.dob.Subscriptions"*/-->
                 <div th:each="subTitle: ${sub}" >
                     <p th:if="${oneNote.subId == subTitle.id}" th:text="${subTitle.titleOfSub}"></p>
                 </div>
             </td>
             <td>
-                <!--/*@thymesVar id="onePrice" type="com.example.news.dob.Price"*/-->
-                <!--/*@thymesVar id="cost" type="com.example.news.dob.Price"*/-->
+                <!--/*@thymesVar id="onePrice" type="com.example.news.dob.Subscriptions"*/-->
                 <div th:each="onePrice: ${cost}">
-                    <p th:if="${onePrice.costs == oneNote.id}" th:text="${onePrice.costs}"></p>
+                    <p th:if="${oneNote.subId == onePrice.id}" th:text="${onePrice.cost.costs}"></p>
                 </div>
             </td>
             <td>

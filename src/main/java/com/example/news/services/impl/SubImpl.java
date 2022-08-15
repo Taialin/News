@@ -21,7 +21,7 @@ public class SubImpl implements SubscriptionsServices {
     }
 
     @Override
-    public Subscriptions save(Subscriptions subscriptions) {
+    public Subscriptions saves(Subscriptions subscriptions) {
         return repository.save(subscriptions);
     }
 
@@ -34,42 +34,9 @@ public class SubImpl implements SubscriptionsServices {
         return (List<Subscriptions>) repository.findAll();
     }
 
-
     @Override
-    public List<Subscriptions> findUserById(Long subId) {
-        List<Subscriptions> userFromDb = repository.findAllById(subId);
-        return userFromDb;
-    }
-
-    @Override
-    public List<Subscriptions> findSubUser(Long id) {
-        return findAll().stream().filter(subscriptions -> id.equals(subscriptions.getId())).collect(Collectors.toList());
-    }
-
-    @Override
-    public boolean unsubscribe(Long subId) {
-        if (repository.findById(subId).isPresent()) {
-            repository.deleteById(subId);
-            return true;
-        }
-        return false;
-    }
-
-
-
-
-/*    @Override
-    public boolean existsById(BigInteger id) {
-        return repository.existsById(id);
-    }
-
-    @Override
-    public Optional<Subscriptions> findById(BigInteger id) {
-        return repository.findById(id);
-    }*/
-
-    @Override
-    public void delete(Subscriptions subscriptions) {
-        repository.delete(subscriptions);
+    public List<Subscriptions> findAllByIds(List<Long> ids) {
+        return findAll().stream().filter(id -> ids.contains(id.getId())).collect(Collectors.toList());
     }
 }
+

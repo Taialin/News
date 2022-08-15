@@ -27,7 +27,9 @@ public class PriceServiceImpl implements PriceService {
         return userFromDb.orElse(new Price());
     }
 
-    public void updateSubCost(long id, String cost) {
+  /*  public void updateSubCost(long id, String cost) {
         priceRepository.updateCost(id, cost);
-    }
+    }*/
+
+
 }

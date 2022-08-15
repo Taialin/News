@@ -41,35 +41,18 @@ public class UserChoiceController {
     @Autowired
     private UserChoiceService userChoiceService;
 
-
-
-
- /*   @RequestMapping(value="/profile",method = RequestMethod.GET)
-    public String showProfilePage(Model model) {
-        model.addAttribute("profile", userChoiceRepository.findAll()) ;
-        return "userSubChoicePage";
-    }*/
-
     @RequestMapping(value="/profile",method = RequestMethod.GET)
-    public String showProfilePage(Model model, @AuthenticationPrincipal User user, Subscriptions subscriptions) {
+    public String showProfilePage(Model model, @AuthenticationPrincipal User user, Subscriptions subscriptions, Price price) {
         user = userService.findUserById(user.getId());
+        List<Price> prices = priceService.findAllById(subscriptions.getId());
         List<UserChoice> userChoices = userChoiceRepository.findUserChoicesByUserIdAndSubIdNotNull(Math.toIntExact(user.getId()));
         List<Long> subscriptionIds = userChoices.stream().map(userChoice -> Long.valueOf(userChoice.getSubId())).collect(Collectors.toList());
+        List<Long> priceId = userChoices.stream().map(userChoice -> Long.valueOf(userChoice.getSubId())).collect(Collectors.toList());
         model.addAttribute("profile", userChoices);
         model.addAttribute("user", user);
         model.addAttribute("sub", subscriptionsRepository.findAllById(subscriptionIds));
-        model.addAttribute("cost",  priceService.findAllById(subscriptions.getId()));
+        model.addAttribute("cost",  prices);
         return "userSubChoicePage";
-    }
-
-    @RequestMapping(value = "/profile", method = RequestMethod.POST)
-    public String UserSubForm(Model model, User user, Price price, Subscriptions subscriptions) {
-        List<User> prof = userService.findAll();
-        model.addAttribute("profile", userChoiceRepository.findUserChoicesByUserIdAndNewsIdNotNull(Math.toIntExact(user.getId())));
-        model.addAttribute("profile", priceService.findAllById(user.getId()));
-        model.addAttribute("profile", prof);
-        return "userSubChoicePage";
-
     }
 
     @RequestMapping(value = "/userSub", method = RequestMethod.POST)

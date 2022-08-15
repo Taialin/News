@@ -5,11 +5,15 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 public interface PriceRepository extends JpaRepository<Price, Long> {
-    @Modifying
-    @Query("update Price u set u.costs = :price where u.id = :id")
-    void updateCost(@Param(value = "id") long id, @Param(value = "price") String price);
 
+    @Transactional
+    @Modifying
+    @Query("update Price c set c.costs = ?1 where c.id = ?2")
+    int updateCardBalance(int balance, int id);
 
 }
