@@ -10,6 +10,8 @@ import java.util.List;
 @Repository
 public interface NewsRepository extends JpaRepository<MyNews, Long> {
 
-    @Query(value = "select cat.news from NewsCategory cat where cat.news_category = :categoryName")
+    @Query(value = "select distinct n.id, n.title, n.link, n.pubDate, n.creator, n.guid, n.description from news_categories nc inner join news_category cat on cat.id = nc.news_id inner join news n on n.id = nc.category_id\n" +
+            "where\n" +
+            "n.title like  CONCAT ('%', :categoryName, '%') or cat.news_category like  CONCAT ('%', :categoryName, '%') ", nativeQuery = true)
     List<MyNews> findAllByCategoryName(String categoryName);
 }

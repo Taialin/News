@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -37,6 +38,11 @@ public class SubImpl implements SubscriptionsServices {
     @Override
     public List<Subscriptions> findAllByIds(List<Long> ids) {
         return findAll().stream().filter(id -> ids.contains(id.getId())).collect(Collectors.toList());
+    }
+    @Override
+    public Subscriptions findSubById(Long subId) {
+        Optional<Subscriptions> userFromDb = repository.findById(subId);
+        return userFromDb.orElse(new Subscriptions());
     }
 }
 

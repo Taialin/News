@@ -11,9 +11,9 @@
                     <!--/*@thymesVar id="useName" type="com.example.news.dob.User"*/-->
                     <h2 th:text="'Subscriptions for ' + ${useName}" ></h2>
                     <ul>
-                        <li><a th:href="@{newsUserView}">News</a></li>
-                        <li><a th:href="@{subscriptionView}">Subscriptions</a></li>
-                        <li><a th:href="@{profile}">My account</a></li>
+                        <li><a th:href="@{newsViewAdmin}">News</a></li>
+                        <li><a th:href="@{subscriptionAdminView}">Subscriptions</a></li>
+                        <li><a th:href="@{userListView}">List of users</a></li>
                    <!--     <li><a th:href="@{}">Logout</a></li>-->
                     </ul>
                     <div>
@@ -43,6 +43,21 @@
                                 <p th:text="${oneNote.cost.costs}"></p>
                                 <span class="tooltiptext">Текст подсказки</span>
                             </div>
+                            <a></a>
+                            <a href="#win1" class="button button-blue">change cost</a>
+                            <a href="#x" class="overlay" id="win1"></a>
+                            <div class="popup">
+                                <form th:action="@{'/update/'+${oneNote.id}}" class="form-group row">
+                                    <label for="keyword" class="col-form-label col-4">Cost</label>
+                                    <!--/*@thymesVar id="keyword" type="com.example.news.repository.PriceRepository"*/-->
+                                    <input type="number" name="keyword" id="keyword"/>
+                                    <!--/*@thymesVar id="keyword" type="com.example.news.repository.PriceRepository"*/-->
+                                    <button type="submit" >save</button>
+                                    <a class="close" title="Закрыть" href="#close"></a>
+
+                                </form>
+                            </div>
+
                         </td>
                         <td th:text="${oneNote.status}"></td>
                         <td th:text="${oneNote.cost.subForm}"></td>

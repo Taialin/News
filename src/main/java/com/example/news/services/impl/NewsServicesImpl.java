@@ -24,10 +24,10 @@ public class NewsServicesImpl implements NewsServices {
     }
 
     @Override
-    public boolean isExist(String newsTitle) {
+    public boolean isExist(String link) {
         List<MyNews> news = repository.findAll();
         for (MyNews n : news) {
-            if (n.getTitle().equals(newsTitle)) {
+            if (n.getLink().equals(link)) {
                 return true;
             }
         }
@@ -41,6 +41,7 @@ public class NewsServicesImpl implements NewsServices {
 
     @Override
     public List<MyNews> getAllNews(String keyword) {
+
         return repository.findAllByCategoryName(keyword);
     }
 

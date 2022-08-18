@@ -50,12 +50,11 @@ public class NewsController {
         return "saveYourNewsPage";
     }
 
-    @RequestMapping(value = "/saveYourNews", method = RequestMethod.POST)
+    @RequestMapping(value = "/saveYourNews", method = RequestMethod.GET)
     public String savingProcess(MyNews news) {
         newsServices.save(news);
         return "redirect:/newsViewAdmin";
     }
-
 
     @GetMapping("/deleteNews/{id}")
     public String  deleteNews(@PathVariable("id") Long newsId, RedirectAttributes redirectAttributes) {

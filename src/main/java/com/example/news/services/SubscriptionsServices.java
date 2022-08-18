@@ -13,4 +13,6 @@ public interface SubscriptionsServices {
     List<Subscriptions> findAll();
 
     List<Subscriptions> findAllByIds(List<Long> ids);
+
+    Subscriptions findSubById(Long subId);
 }

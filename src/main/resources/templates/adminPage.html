@@ -15,13 +15,12 @@
     <h2>News for admin</h2>
     <ul>
         <li><a th:href="@{newsViewAdmin}">News</a></li>
-        <li><a th:href="@{subscriptionView}">Subscriptions</a></li>
-        <li><a th:href="@{categoryView}">Categories</a></li>
+        <li><a th:href="@{subscriptionAdminView}">Subscriptions</a></li>
         <li><a th:href="@{userListView}">List of users</a></li>
         <li><a th:href="@{yourNews}">Add news</a></li>
     </ul>
     <div class="form-actions">
-        <button th:action="@{'/saveYourNews'}" class="btn">Update news</button>
+        <a id="onetime" th:href="@{'/upDateNewsFrom'}" class="btn" th:disabled="true" >Update news</a>
     </div>
     <p></p>
     <div>
@@ -73,28 +72,20 @@
     </tr>
     </tbody>
 </table>
-<!--  <div id="myModal2" class="modal fade">
-      <div class="modal-dialog modal-sm">
-          <div class="modal-content">
-              <div class="modal-header">
-                  <h4 class="modal-title">Подтвердите действия</h4>
-              </div>
-              <div class="modal-body">
-                  <th:block th:text="'TestTest '"></th:block>
-              </div>
-              <div class="modal-footer">
-                  <button type="button" class="btn btn-default" data-dismiss="modal">Закрыть</button>
-                  <button type="button" class="btn btn-primary" >Сохранить изменения</button>
-              </div>
-          </div>
-      </div>
-  </div>-->
 </body>
 
 <script type="text/javascript">
     function clearFilter() {
         window.location = '/newsViewAdmin';
     }
+        window.onload = function() {
+        document.getElementById("onetime").onclick = function() {
+            this.disabled = 'disabled';
+        }
+            setTimeout(function() {
+                this.attr('disabled', false);
+            }, 50000);
 
+    }
 </script>
 </html>
