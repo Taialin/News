@@ -1,6 +1,6 @@
 package com.example.news.controllers;
 
-import com.example.news.services.impl.UserService;
+import com.example.news.services.impl.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class UserListController {
 
     @Autowired
-    private UserService userService;
+    private UserServiceImpl userService;
 
     @RequestMapping(value = "/userList", method = RequestMethod.POST)
     public String userListForm(Model model) {

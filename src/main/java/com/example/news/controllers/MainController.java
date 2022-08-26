@@ -2,17 +2,14 @@ package com.example.news.controllers;
 
 import com.example.news.dob.User;
 import com.example.news.repository.UserRepository;
-import com.example.news.services.impl.UserService;
+import com.example.news.services.impl.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 
@@ -22,7 +19,7 @@ public class MainController {
     private UserRepository userRepository;
 
     @Autowired
-    private UserService userService;
+    private UserServiceImpl userService;
 
     @GetMapping("")
     public String firstPage() {
@@ -38,10 +35,7 @@ public class MainController {
 
     @PostMapping("/registrationProcess")
     public String registrationProcess(User user) {
-        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-        String encodePassword = encoder.encode(user.getPassword());
-        user.setPassword(encodePassword);
-        userRepository.save(user);
+        userService.save(user);
         return "redirect:/login";
     }
 

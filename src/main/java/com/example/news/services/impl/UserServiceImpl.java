@@ -1,8 +1,10 @@
 package com.example.news.services.impl;
 
+import com.example.news.dob.Role;
 import com.example.news.dob.User;
 import com.example.news.repository.RoleRepository;
 import com.example.news.repository.UserRepository;
+import com.example.news.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -12,11 +14,12 @@ import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
 @Service
-public class UserService implements UserDetailsService {
+public class UserServiceImpl implements UserDetailsService, UserService {
 
     @PersistenceContext
     private EntityManager em;
@@ -38,29 +41,35 @@ public class UserService implements UserDetailsService {
         return user;
     }
 
+    @Override
     public User findUserById(Long userId) {
         Optional<User> userFromDb = userRepository.findById(userId);
-        return userFromDb.orElse(new User());
+        return userFromDb.orElse(null);
     }
 
-    public Object allUsers() {
-        return userRepository.findAll();
+    @Override
+    public void deleteUser(Long userId) {
+        userRepository.deleteById(userId);
     }
 
-    public boolean deleteUser(Long userId) {
-        if (userRepository.findById(userId).isPresent()) {
-            userRepository.deleteById(userId);
-            return true;
-        }
-        return false;
-    }
-
+    @Override
     public List<User> findAll() {
         return (List<User>) userRepository.findAll();
     }
 
+    @Override
     public List<User> userList(Long idMin) {
         return em.createQuery("SELECT u FROM User u WHERE u.id > :paramId", User.class)
                 .setParameter("paramId", idMin).getResultList();
+    }
+
+    @Override
+    public User save(User user) {
+        Optional<Role> role = roleRepository.findById(2L);
+        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+        String encodePassword = encoder.encode(user.getPassword());
+        user.setPassword(encodePassword);
+        role.ifPresent(value -> user.setRoles(Collections.singletonList(value)));
+        return userRepository.save(user);
     }
 }
