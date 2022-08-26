@@ -7,7 +7,7 @@ import com.example.news.repository.UserChoiceRepository;
 import com.example.news.services.PriceService;
 import com.example.news.services.SubscriptionsServices;
 import com.example.news.services.UserChoiceService;
-import com.example.news.services.impl.UserService;
+import com.example.news.services.impl.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
@@ -27,7 +27,7 @@ public class UserChoiceController {
     private UserChoiceRepository userChoiceRepository;
 
     @Autowired
-    private UserService userService;
+    private UserServiceImpl userService;
 
     @Autowired
     private PriceService priceService;

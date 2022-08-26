@@ -24,6 +24,7 @@ import java.util.Set;
 
 
 @Service
+
 public class RssFeedView {
 
     @Autowired

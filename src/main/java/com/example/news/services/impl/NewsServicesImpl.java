@@ -5,6 +5,7 @@ import com.example.news.repository.NewsRepository;
 import com.example.news.services.NewsCategoryServices;
 import com.example.news.services.NewsServices;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -27,7 +28,7 @@ public class NewsServicesImpl implements NewsServices {
     public boolean isExist(String link) {
         List<MyNews> news = repository.findAll();
         for (MyNews n : news) {
-            if (n.getLink().equals(link)) {
+            if (n.getLink().equals(link.toString())) {
                 return true;
             }
         }

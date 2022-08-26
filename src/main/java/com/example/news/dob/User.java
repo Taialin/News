@@ -31,7 +31,7 @@ public class User implements UserDetails {
             name = "user_roles",
             joinColumns = @JoinColumn(name = "roleId"),
             inverseJoinColumns = @JoinColumn(name = "userId"))
-    private Set<Role> roles;
+    private Collection<Role> roles;
 
     @ManyToMany(cascade = CascadeType.ALL)
     @JsonIgnore
@@ -133,11 +133,11 @@ public class User implements UserDetails {
         this.passwordConfirm = passwordConfirm;
     }
 
-    public Set<Role> getRoles() {
+    public Collection<Role> getRoles() {
         return roles;
     }
 
-    public void setRoles(Set<Role> roles) {
+    public void setRoles(Collection<Role> roles) {
         this.roles = roles;
     }
 

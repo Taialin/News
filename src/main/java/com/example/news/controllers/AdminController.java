@@ -1,28 +1,21 @@
 package com.example.news.controllers;
 
-import com.example.news.dob.MyNews;
 import com.example.news.dob.Subscriptions;
 import com.example.news.repository.PriceRepository;
-import com.example.news.repository.UserRepository;
 import com.example.news.services.*;
 import com.example.news.services.impl.RssFeedView;
-import com.example.news.services.impl.UserService;
+import com.example.news.services.impl.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
-import java.util.List;
-
-import static org.springframework.data.jpa.domain.AbstractPersistable_.id;
 
 @Controller
 public class AdminController {
 
     @Autowired
-    private UserService userService;
+    private UserServiceImpl userService;
     @Autowired
     private NewsServices newsServices;
     @Autowired
