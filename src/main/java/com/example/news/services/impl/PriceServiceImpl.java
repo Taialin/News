@@ -22,6 +22,7 @@ public class PriceServiceImpl implements PriceService {
     public List<Price> findAllById(Long id) {
         return (List<Price>) priceRepository.findAllById(Collections.singleton(id));
     }
+
     @Override
     public Price findSubById(Long priceId) {
         Optional<Price> userFromDb = priceRepository.findById(priceId);

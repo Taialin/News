@@ -1,6 +1,8 @@
 package com.example.news.services.impl;
 
+import com.example.news.dob.BillAcc;
 import com.example.news.dob.Subscriptions;
+import com.example.news.repository.BillAccRepository;
 import com.example.news.repository.SubscriptionsRepository;
 import com.example.news.services.SubscriptionsServices;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +18,10 @@ import java.util.stream.Collectors;
 public class SubImpl implements SubscriptionsServices {
     private final SubscriptionsRepository repository;
 
+    private BillAccRepository billAccRepository;
+
+    private BillAcc billAcc;
+
     @Autowired
     public SubImpl(SubscriptionsRepository repository) {
         this.repository = repository;
@@ -23,10 +29,6 @@ public class SubImpl implements SubscriptionsServices {
 
     @Override
     public Subscriptions saves(Subscriptions subscriptions) {
-        return repository.save(subscriptions);
-    }
-
-    public Subscriptions subscribe(Subscriptions subscriptions) {
         return repository.save(subscriptions);
     }
 
