@@ -2,24 +2,22 @@ package com.example.news.services.impl;
 
 import com.example.news.dob.Subscriptions;
 import com.example.news.dob.UserChoice;
-import com.example.news.repository.BillAccRepository;
-import com.example.news.repository.PaymentsRepository;
-import com.example.news.repository.SubscriptionsRepository;
 import com.example.news.repository.UserChoiceRepository;
 import com.example.news.services.BillAccServices;
 import com.example.news.services.PaymentsServices;
 import com.example.news.services.SubscriptionsServices;
 import com.example.news.services.UserChoiceService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
-import java.time.*;
-import java.time.temporal.ChronoUnit;
-import java.time.temporal.Temporal;
-import java.util.*;
+import java.time.LocalDate;
+import java.time.Period;
+import java.time.ZoneId;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @Service
 public class SchedulerService {

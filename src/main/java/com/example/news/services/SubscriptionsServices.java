@@ -1,8 +1,6 @@
 package com.example.news.services;
 
 import com.example.news.dob.Subscriptions;
-import com.example.news.dob.UserChoice;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 
